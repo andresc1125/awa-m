@@ -1,0 +1,10 @@
+Get composer
+curl -s http://getcomposer.org/installer | php
+
+
+Install vendors
+php composer.phar install
+
+get all permisions
+
+sud chmod 777 -R app/logs app/cache
