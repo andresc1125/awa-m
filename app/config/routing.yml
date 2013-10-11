@@ -1,3 +1,8 @@
+awa_app:
+    resource: "@AwaAppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 awa_try:
     resource: "@AwaTryBundle/Resources/config/routing.yml"
     prefix:   /
