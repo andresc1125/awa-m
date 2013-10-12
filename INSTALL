@@ -1,10 +1,12 @@
-Get composer
+#Get composer
 curl -s http://getcomposer.org/installer | php
 
+#in order to composer works you must have installed some libraries
+sudo apt-get install php5-intl
 
-Install vendors
+#Install vendors
 php composer.phar install
 
-get all permisions
+#get all permisions
 
-sud chmod 777 -R app/logs app/cache
+sudo chmod 777 -R app/logs app/cache
