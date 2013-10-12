@@ -10,3 +10,5 @@ php composer.phar install
 #get all permisions
 
 sudo chmod 777 -R app/logs app/cache
+
+#test the app at awa//web/app_dev.php/
