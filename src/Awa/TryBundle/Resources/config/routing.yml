@@ -1,0 +1,3 @@
+awa_try_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AwaTryBundle:Default:index }

@@ -1,0 +1,9 @@
+awa_try:
+    resource: "@AwaTryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+awa_user:
+    resource: "@AwaUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
