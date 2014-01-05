@@ -17,7 +17,11 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Awa\UserBundle\AwaUserBundle(),
-            new Awa\TryBundle\AwaTryBundle(),
+            new Awa\LearningBundle\AwaLearningBundle(),
+            new Awa\BaseBundle\AwaBaseBundle(),
+            new Acme\StoreBundle\AcmeStoreBundle(),
+            new Awa\BussinessBundle\AwaBussinessBundle(),
+            new Awa\SecurityBundle\AwaSecurityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

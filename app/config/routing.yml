@@ -1,6 +1,27 @@
-awa_try:
-    resource: "@AwaTryBundle/Resources/config/routing.yml"
+awa_security:
+    resource: "@AwaSecurityBundle/Controller/"
+    type:     annotation
     prefix:   /
+
+awa_bussiness:
+    resource: "@AwaBussinessBundle/Controller/"
+    type:     annotation
+    prefix:   admin/
+
+acme_store:
+    resource: "@AcmeStoreBundle/Controller/"
+    type:     annotation
+    prefix:   store/
+
+awa_base:
+    resource: "@AwaBaseBundle/Controller/"
+    type:     annotation
+    prefix:   base/
+
+awa_learning:
+    resource: "@AwaLearningBundle/Controller/"
+    type:     annotation
+    prefix:   learn/
 
 awa_user:
     resource: "@AwaUserBundle/Controller/"

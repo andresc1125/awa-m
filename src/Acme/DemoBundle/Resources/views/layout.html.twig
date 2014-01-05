@@ -20,15 +20,19 @@
                 <li><a href="{{ path('_demo') }}">Demo Home</a></li>
             {% endblock %}
         </ul>
+        <img src="{{ asset('images/logo.gif') }}" />
 
         <div style="clear: both"></div>
     {% endblock %}
 
     <div class="block">
-        {% block content %}{% endblock %}
+        {% block content %}
+        <img src="{{ asset('images/logo.gif') }}" />
+        {% endblock %}
     </div>
 
     {% if code is defined %}
+	<img src="{{ asset('favicon.ico') }}" />
         <h2>Code behind this page</h2>
         <div class="block">
             <div class="symfony-content">{{ code|raw }}</div>

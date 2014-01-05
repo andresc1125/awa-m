@@ -12,3 +12,17 @@ php composer.phar install
 sudo chmod 777 -R app/logs app/cache
 
 #test the app at awa//web/app_dev.php/
+
+#Create database (must be configured de database parametres at http://localhost/awa/awa-m/web/config.php)
+
+php app/console doctrine:database:create
+php app/console doctrine:schema:update --force
+
+#Test the aplication
+
+#go to
+/web/app_dev.php/admin/
+
+#if you receive a permisions error, just delete the content from web/.htaccess
+
+
