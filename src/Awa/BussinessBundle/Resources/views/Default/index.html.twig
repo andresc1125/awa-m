@@ -1,0 +1,16 @@
+{% extends "AwaBaseBundle::base.html.twig" %}
+
+{% block body %}
+<div class="some_bootstrap_class"><p><h1>Welcome to the admin interface!!!</h1></p></div>
+The following links, will take you to the especific interface
+<br/>
+<a href="{{ path('aplication') }}">Apps interface</a>
+
+<br/>
+<a href="{{ path('category') }}">Categories interface</a>
+
+<br/>
+<a href="{{ path('distributor') }}">Distributors interface</a>
+
+
+{% endblock %}

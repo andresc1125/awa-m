@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- aca se debe poner bootstrap y jquery, backbone y demás que se usen-->
+        <!-- aca se debe poner bootstrap, jquery, backbone y demás que se usen-->
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap-theme.min.css') }}">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="{{ asset('css/bootstrap/css/js/bootstrap.min.js') }}"></script> 
+		
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block adminlink %} <br/><a href="{{ path('admin_interface') }}">Admin main page</a>{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

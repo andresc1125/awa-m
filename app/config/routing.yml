@@ -7,10 +7,6 @@ awa_app:
     type:     annotation
     prefix:   /
 
-awa_try:
-    resource: "@AwaTryBundle/Resources/config/routing.yml"
-    prefix:   /
-
 awa_bussiness:
     resource: "@AwaBussinessBundle/Controller/"
     type:     annotation
