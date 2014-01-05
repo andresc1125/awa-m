@@ -1,6 +1,14 @@
 awa_security:
     resource: "@AwaSecurityBundle/Controller/"
     type:     annotation
+
+awa_app:
+    resource: "@AwaAppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+awa_try:
+    resource: "@AwaTryBundle/Resources/config/routing.yml"
     prefix:   /
 
 awa_bussiness:
