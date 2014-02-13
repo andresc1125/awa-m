@@ -7,6 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class SecurityController extends Controller
 {	
+	
+	/**
+     * @Route("/login", name="_awa_login")
+     * @Template()
+     */
 	public function loginAction()
 	{
 		$request = $this->getRequest();

@@ -32,3 +32,12 @@ awa_user:
     type:     annotation
     prefix:   /
 
+login:
+    path:     /login
+    defaults: { _controller: AcmeSecurityBundle:Security:login }
+
+login_check:
+    path: admin/login_check
+    
+logout:
+    pattern: /logout
