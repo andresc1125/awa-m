@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <!-- aca se debe poner bootstrap y jquery, backbone y demás que se usen-->
         <!-- aca se debe poner bootstrap, jquery, backbone y demás que se usen-->
         <!-- Latest compiled and minified CSS -->
@@ -12,14 +14,37 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="{{ asset('css/bootstrap/css/js/bootstrap.min.js') }}"></script> 
 		
+		<!-- Custom styles for this template -->
+		<link href="vendor/css/starter-template.css" rel="stylesheet">
+		
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block adminlink %} <br/><a href="{{ path('admin_interface') }}">Admin main page</a>{% endblock %}
-        {% block adminlogout %} <br/><a href="{{ path('logout') }}">Salir</a>{% endblock %}
-        {% block javascripts %}{% endblock %}
+		
+			{% block navigation %}
+			<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+				<div class="container">
+					<div class="collapse navbar-collapse">
+								<ul class="nav navbar-nav">
+									<li><a href="{{ path('admin_interface') }}">Tristán &reg;</a></li>
+									<li><a href="{{ path('aplication') }}">Apps</a></li>
+									<li><a href="{{ path('category') }}">Categories</a></li>
+									<li><a href="{{ path('distributor') }}">Distributors</a></li>
+									<li><a href="{{ path('logout') }}">Salir</a></li>
+								</ul>
+					</div>
+				</div>
+			</div>
+			{% endblock %}
+		<div class="container">	
+		<br>
+		<br>
+			<div class="starter-template">
+				{% block body %}{% endblock %}
+			</div>
+			{% block javascripts %}{% endblock %}
+		</div>
     </body>
 </html>
