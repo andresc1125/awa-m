@@ -19,7 +19,6 @@ class AppKernel extends Kernel
             new Awa\UserBundle\AwaUserBundle(),
             new Awa\LearningBundle\AwaLearningBundle(),
             new Awa\BaseBundle\AwaBaseBundle(),
-            new Acme\StoreBundle\AcmeStoreBundle(),
             new Awa\BussinessBundle\AwaBussinessBundle(),
             new Awa\SecurityBundle\AwaSecurityBundle(),
             new Awa\AppBundle\AwaAppBundle(),

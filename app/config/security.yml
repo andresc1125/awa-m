@@ -16,7 +16,7 @@ security:
         in_memory:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER','ROLE_ADMIN' ] }
+                    user:  { password: userpassa, roles: [ 'ROLE_USER','ROLE_ADMIN' ] }
                     admina2: { password: adminpassa, roles: [ 'ROLE_ADMIN' ] }
         administrators:
             entity: { class: AwaUserBundle:User  }
