@@ -40,4 +40,4 @@ login_check:
     path: admin/login_check
     
 logout:
-    pattern: /logout
+    pattern: admin/logout

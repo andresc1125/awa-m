@@ -19,6 +19,7 @@
     <body>
         {% block body %}{% endblock %}
         {% block adminlink %} <br/><a href="{{ path('admin_interface') }}">Admin main page</a>{% endblock %}
+        {% block adminlogout %} <br/><a href="{{ path('logout') }}">Salir</a>{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

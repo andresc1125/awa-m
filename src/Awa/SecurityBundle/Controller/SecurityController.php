@@ -37,5 +37,14 @@ class SecurityController extends Controller
 				)
 			);
 	}
+	
+    /**
+     * @Route("/logout", name="_awa_logout")
+     */
+    public function logoutAction()
+    {
+        // The security layer will intercept this request
+    }
+
 }
  
