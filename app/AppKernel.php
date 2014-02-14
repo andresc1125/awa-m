@@ -21,7 +21,6 @@ class AppKernel extends Kernel
             new Awa\BaseBundle\AwaBaseBundle(),
             new Awa\BussinessBundle\AwaBussinessBundle(),
             new Awa\SecurityBundle\AwaSecurityBundle(),
-            new Awa\AppBundle\AwaAppBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
