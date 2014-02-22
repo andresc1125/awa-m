@@ -1,9 +1,9 @@
-{% extends 'AwaBaseBundle::base.html.twig' %}
+{% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>AAplication creation</h1>
+    <h1>Currency creation</h1>
 
-    <form action="{{ path('aplication_create') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('currency_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <p>
             <button type="submit">Create</button>
@@ -12,7 +12,7 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('aplication') }}">
+        <a href="{{ path('currency') }}">
             Back to the list
         </a>
     </li>

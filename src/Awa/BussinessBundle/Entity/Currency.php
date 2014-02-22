@@ -3,15 +3,14 @@
 namespace Awa\BussinessBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Category
+ * Currency
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Awa\BussinessBundle\Entity\CategoryRepository")
+ * @ORM\Entity(repositoryClass="Awa\BussinessBundle\Entity\CurrencyRepository")
  */
-class Category
+class Currency
 {
     /**
      * @var integer
@@ -28,17 +27,12 @@ class Category
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
+    
 	/**
-	* @ORM\ManyToMany(targetEntity="Awa\BussinessBundle\Entity\AAplication", mappedBy="categories")
+	* @ORM\OneToMany(targetEntity="Awa\BussinessBundle\Entity\AAplication", mappedBy="currency")
 	*/
-	private $aplications;
+	protected $aplications;
 
-	
-	public function __construct()
-	{
-		$this->aplications = new ArrayCollection();
-	}
 
     /**
      * Get id
@@ -54,7 +48,7 @@ class Category
      * Set name
      *
      * @param string $name
-     * @return Category
+     * @return Currency
      */
     public function setName($name)
     {
@@ -72,17 +66,19 @@ class Category
     {
         return $this->name;
     }
-    
-    public function __toString()
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-		return $this->name;
-	}
-
+        $this->aplications = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Add aplications
      *
      * @param \Awa\BussinessBundle\Entity\AAplication $aplications
-     * @return Category
+     * @return Currency
      */
     public function addAplication(\Awa\BussinessBundle\Entity\AAplication $aplications)
     {
@@ -110,4 +106,9 @@ class Category
     {
         return $this->aplications;
     }
+    
+    public function __toString()
+    {
+		return $this->name;
+	}
 }

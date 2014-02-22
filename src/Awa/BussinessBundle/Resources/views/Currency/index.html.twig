@@ -1,32 +1,28 @@
 {% extends 'AwaBaseBundle::base.html.twig' %}
 
 {% block body -%}
-    <h1>AAplication list</h1>
+    <h1>Currency list</h1>
 
     <table class="records_list  table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Urldescarga</th>
-                <th>Price</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('aplication_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('currency_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
-                <td>{{ entity.urlDescarga }}</td>
-                <td>{{ entity.price }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('aplication_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('currency_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('aplication_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('currency_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -37,7 +33,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('aplication_new') }}">
+            <a href="{{ path('currency_new') }}">
                 Create a new entry
             </a>
         </li>

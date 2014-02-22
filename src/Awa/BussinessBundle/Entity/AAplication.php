@@ -28,6 +28,13 @@ class AAplication
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_descarga", type="text")
+     */
+    private $urlDescarga;
 
     /**
      * @var float
@@ -42,6 +49,12 @@ class AAplication
 	* @ORM\JoinColumn(name="distributor_id", referencedColumnName="id")
 	*/
 	protected $distributor;
+	
+	/**
+	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\Currency", inversedBy="aplications")
+	* @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+	*/
+	protected $currency;
 	
 	
 	/**
@@ -176,4 +189,50 @@ class AAplication
     {
 		return $this->getName();
 	}
+
+    /**
+     * Set currency
+     *
+     * @param \Awa\BussinessBundle\Entity\Currency $currency
+     * @return AAplication
+     */
+    public function setCurrency(\Awa\BussinessBundle\Entity\Currency $currency = null)
+    {
+        $this->currency = $currency;
+    
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return \Awa\BussinessBundle\Entity\Currency 
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Set urlDescarga
+     *
+     * @param string $urlDescarga
+     * @return AAplication
+     */
+    public function setUrlDescarga($urlDescarga)
+    {
+        $this->urlDescarga = $urlDescarga;
+    
+        return $this;
+    }
+
+    /**
+     * Get urlDescarga
+     *
+     * @return string 
+     */
+    public function getUrlDescarga()
+    {
+        return $this->urlDescarga;
+    }
 }
