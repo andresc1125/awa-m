@@ -1,3 +1,8 @@
+awa_store:
+    resource: "@AwaStoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 awa_security:
     resource: "@AwaSecurityBundle/Controller/"
     type:     annotation
@@ -11,11 +16,6 @@ awa_base:
     resource: "@AwaBaseBundle/Controller/"
     type:     annotation
     prefix:   base/
-
-awa_learning:
-    resource: "@AwaLearningBundle/Controller/"
-    type:     annotation
-    prefix:   learn/
 
 awa_user:
     resource: "@AwaUserBundle/Controller/"

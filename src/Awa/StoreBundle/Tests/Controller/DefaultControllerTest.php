@@ -1,6 +1,6 @@
 <?php
 
-namespace Awa\LearningBundle\Tests\Controller;
+namespace Awa\StoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
