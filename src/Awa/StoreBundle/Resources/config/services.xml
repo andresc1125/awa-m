@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="awa_learning.example.class">Awa\LearningBundle\Example</parameter>
+        <parameter key="awa_store.example.class">Awa\StoreBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="awa_learning.example" class="%awa_learning.example.class%">
+        <service id="awa_store.example" class="%awa_store.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

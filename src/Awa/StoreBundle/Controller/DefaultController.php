@@ -1,6 +1,6 @@
 <?php
 
-namespace Awa\LearningBundle\Controller;
+namespace Awa\StoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

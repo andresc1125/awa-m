@@ -24,16 +24,13 @@
     <body>
 		
 			{% block navigation %}
-			<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="user-theme" role="navigation">
 				<div class="container">
-					<div class="collapse navbar-collapse">
-								<ul class="nav navbar-nav">
+					<div class="">
+								<ul class="">
 									<li><a href="{{ path('admin_interface') }}">Tristán &reg;</a></li>
-									<li><a href="{{ path('aplication') }}">Apps</a></li>
-									<li><a href="{{ path('category') }}">Categories</a></li>
-									<li><a href="{{ path('distributor') }}">Distributors</a></li>
-									<li><a href="{{ path('logout') }}">Salir</a></li>
 									<li><a href="{{ path('store') }}">Store</a></li>
+									<li><a href="{{ path('logout') }}">Salir</a></li>
 								</ul>
 					</div>
 				</div>
