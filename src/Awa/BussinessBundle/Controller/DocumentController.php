@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Awa\BussinessBundle\Entity\AplicationImage;
-use Awa\BussinessBundle\Form\AplicationImageType;
+use Awa\BussinessBundle\Entity\Document;
+use Awa\BussinessBundle\Form\DocumentType;
 
 /**
- * AplicationImage controller.
+ * Document controller.
  *
- * @Route("/aplication_image")
+ * @Route("/document")
  */
-class AplicationImageController extends Controller
+class DocumentController extends Controller
 {
 
     /**
-     * Lists all AplicationImage entities.
+     * Lists all Document entities.
      *
-     * @Route("/", name="aplication_image")
+     * @Route("/", name="document")
      * @Method("GET")
      * @Template()
      */
@@ -29,23 +29,23 @@ class AplicationImageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AwaBussinessBundle:AplicationImage')->findAll();
+        $entities = $em->getRepository('AwaBussinessBundle:Document')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new AplicationImage entity.
+     * Creates a new Document entity.
      *
-     * @Route("/", name="aplication_image_create")
+     * @Route("/", name="document_create")
      * @Method("POST")
-     * @Template("AwaBussinessBundle:AplicationImage:new.html.twig")
+     * @Template("AwaBussinessBundle:Document:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new AplicationImage();
-        $form = $this->createForm(new AplicationImageType(), $entity);
+        $entity  = new Document();
+        $form = $this->createForm(new DocumentType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -53,7 +53,7 @@ class AplicationImageController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('aplication_image_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('document_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,16 +63,16 @@ class AplicationImageController extends Controller
     }
 
     /**
-     * Displays a form to create a new AplicationImage entity.
+     * Displays a form to create a new Document entity.
      *
-     * @Route("/new", name="aplication_image_new")
+     * @Route("/new", name="document_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new AplicationImage();
-        $form   = $this->createForm(new AplicationImageType(), $entity);
+        $entity = new Document();
+        $form   = $this->createForm(new DocumentType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -81,9 +81,9 @@ class AplicationImageController extends Controller
     }
 
     /**
-     * Finds and displays a AplicationImage entity.
+     * Finds and displays a Document entity.
      *
-     * @Route("/{id}", name="aplication_image_show")
+     * @Route("/{id}", name="document_show")
      * @Method("GET")
      * @Template()
      */
@@ -91,10 +91,10 @@ class AplicationImageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaBussinessBundle:AplicationImage')->find($id);
+        $entity = $em->getRepository('AwaBussinessBundle:Document')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find AplicationImage entity.');
+            throw $this->createNotFoundException('Unable to find Document entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -106,9 +106,9 @@ class AplicationImageController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing AplicationImage entity.
+     * Displays a form to edit an existing Document entity.
      *
-     * @Route("/{id}/edit", name="aplication_image_edit")
+     * @Route("/{id}/edit", name="document_edit")
      * @Method("GET")
      * @Template()
      */
@@ -116,13 +116,13 @@ class AplicationImageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaBussinessBundle:AplicationImage')->find($id);
+        $entity = $em->getRepository('AwaBussinessBundle:Document')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find AplicationImage entity.');
+            throw $this->createNotFoundException('Unable to find Document entity.');
         }
 
-        $editForm = $this->createForm(new AplicationImageType(), $entity);
+        $editForm = $this->createForm(new DocumentType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -133,31 +133,31 @@ class AplicationImageController extends Controller
     }
 
     /**
-     * Edits an existing AplicationImage entity.
+     * Edits an existing Document entity.
      *
-     * @Route("/{id}", name="aplication_image_update")
+     * @Route("/{id}", name="document_update")
      * @Method("PUT")
-     * @Template("AwaBussinessBundle:AplicationImage:edit.html.twig")
+     * @Template("AwaBussinessBundle:Document:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaBussinessBundle:AplicationImage')->find($id);
+        $entity = $em->getRepository('AwaBussinessBundle:Document')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find AplicationImage entity.');
+            throw $this->createNotFoundException('Unable to find Document entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new AplicationImageType(), $entity);
+        $editForm = $this->createForm(new DocumentType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('aplication_image_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('document_edit', array('id' => $id)));
         }
 
         return array(
@@ -167,9 +167,9 @@ class AplicationImageController extends Controller
         );
     }
     /**
-     * Deletes a AplicationImage entity.
+     * Deletes a Document entity.
      *
-     * @Route("/{id}", name="aplication_image_delete")
+     * @Route("/{id}", name="document_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -179,21 +179,21 @@ class AplicationImageController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AwaBussinessBundle:AplicationImage')->find($id);
+            $entity = $em->getRepository('AwaBussinessBundle:Document')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find AplicationImage entity.');
+                throw $this->createNotFoundException('Unable to find Document entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('aplication_image'));
+        return $this->redirect($this->generateUrl('document'));
     }
 
     /**
-     * Creates a form to delete a AplicationImage entity by id.
+     * Creates a form to delete a Document entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -208,10 +208,16 @@ class AplicationImageController extends Controller
     }
     
     public function uploadAction()
-	{
+{
+    // ...
 
-		$form = $this->createFormBuilder($document)
-			->add('file')
-			->getForm();
-	}
+    $form = $this->createFormBuilder($document)
+        ->add('name')
+        ->add('file')
+        ->getForm();
+
+    // ...
+}
+
+
 }
