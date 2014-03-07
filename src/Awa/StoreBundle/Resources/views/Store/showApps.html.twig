@@ -1,0 +1,33 @@
+{% extends 'AwaBaseBundle::userBase.html.twig' %}
+
+{% block body -%}
+	<div id="appLayout">
+		<div id="title">
+			<h1>{{entity.name}}</h1>
+		</div>	
+		
+		<div id="image">
+			<img src="put here the image's url" alt="{{entity.name}}" height="300" width="300">
+		</div>
+		
+		<div id="details">
+			<div id="url">
+				<a href="{{entity.urlDescarga}}" target="blank">Descargar</a>
+			</div>
+			<div id="price">
+				{{entity.price}}
+			</div>
+			<div id="visits">
+				put here the visits amount
+			</div>
+			<div id="ditributor">
+				{{entity.distributor}}
+			</div>
+			<div id="category">
+				put here the category
+			</div>
+		</div>
+		
+	</div>
+        
+    {% endblock %}
