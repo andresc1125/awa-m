@@ -31,4 +31,22 @@ class StoreController extends Controller
             'entities' => $entities,
         );
     }
+    
+    /**
+     * Lists all AAplication entities.
+     *
+     * @Route("/app/", name="store")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAppsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AwaBussinessBundle:AAplication')->find(8);
+
+        return array(
+            'entity' => $entity,
+        );
+    }
 }
