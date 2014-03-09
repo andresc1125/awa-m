@@ -1,0 +1,32 @@
+body
+{
+margin:0;
+padding:0;
+}
+
+.left-bar
+{
+margin-top:50px;
+float:left;
+width:10%;
+color:#ffffff;
+background-color:#303A4A;
+}
+
+#main-content
+{
+margin-top:50px;
+float:left;
+height:550px;
+width:90%;
+text-align:center;
+}
+
+.footer
+{
+height: 100;
+background-color: #333333;
+color: #ffffff;
+text-align: center;
+clear: both;
+}
