@@ -4,6 +4,8 @@ namespace Awa\BussinessBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * AplicationImage
@@ -28,6 +30,20 @@ class AplicationImage
      * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="weight", type="integer")
+     */
+    private $weight;
+    
+	/**
+	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\AAplication", inversedBy="images")
+	* @ORM\JoinColumn(name="aplication_id", referencedColumnName="id")
+	*/
+	protected $aaplication;
+    
 
 
     /**
@@ -63,8 +79,8 @@ class AplicationImage
         return $this->path;
     }
     
-        /**
-     * @Assert\Image(maxSize="6000000")
+     /**
+     * @Assert\File(maxSize="6000000")
      */
     private $image;
 
@@ -73,7 +89,7 @@ class AplicationImage
      *
      * @param UploadedFile $file
      */
-    public function setImage(UploadedFile $file = null)
+    public function setImage(UploadedFile $image = null)
     {
         $this->image = $image;
     }
@@ -115,4 +131,76 @@ class AplicationImage
         // when displaying uploaded doc/image in the view.
         return 'uploads/documents';
     }
+    
+
+
+    /**
+     * Set weight
+     *
+     * @param integer $weight
+     * @return AplicationImage
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return integer 
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * Set aaplication
+     *
+     * @param \Awa\BussinessBundle\Entity\AAplication $aaplication
+     * @return AplicationImage
+     */
+    public function setAaplication(\Awa\BussinessBundle\Entity\AAplication $aaplication = null)
+    {
+        $this->aaplication = $aaplication;
+    
+        return $this;
+    }
+
+    /**
+     * Get aaplication
+     *
+     * @return \Awa\BussinessBundle\Entity\AAplication 
+     */
+    public function getAaplication()
+    {
+        return $this->aaplication;
+    }
+    
+    public function upload()
+	{
+		// the file property can be empty if the field is not required
+		if (null === $this->getImage()) {
+			return;
+		}
+
+		// use the original file name here but you should
+		// sanitize it at least to avoid any security issues
+
+		// move takes the target directory and then the
+		// target filename to move to
+		$this->getImage()->move(
+			$this->getUploadRootDir(),
+			$this->getImage()->getClientOriginalName()
+		);
+
+		// set the path property to the filename where you've saved the file
+		$this->path = $this->getImage()->getClientOriginalName();
+
+		// clean up the file property as you won't need it anymore
+		$this->image = null;
+	}
 }

@@ -50,6 +50,7 @@ class AplicationImageController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->upload();
             $em->persist($entity);
             $em->flush();
 
@@ -184,7 +185,6 @@ class AplicationImageController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find AplicationImage entity.');
             }
-
             $em->remove($entity);
             $em->flush();
         }
@@ -206,12 +206,4 @@ class AplicationImageController extends Controller
             ->getForm()
         ;
     }
-    
-    public function uploadAction()
-	{
-
-		$form = $this->createFormBuilder($document)
-			->add('file')
-			->getForm();
-	}
 }

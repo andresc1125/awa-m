@@ -5,9 +5,7 @@
 		
 		{% for entity in entities %}
            
-                <a href="{{ path('aplication_show', { 'id': entity.id }) }}">{{ entity.id }}</a>
-                {{ entity.name }}
-                <a href="{{entity.urlDescarga}}" target="blank">{{ entity.name }}</a>
+                <a href="{{ path('store_show_app', { 'id': entity.id }) }}">{{ entity.name }}</a>
                 {{ entity.price }}
         {% endfor %}
         

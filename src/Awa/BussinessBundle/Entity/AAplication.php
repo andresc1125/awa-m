@@ -63,6 +63,11 @@ class AAplication
 	*/
 	protected $categories;
 	
+	/**
+	* @ORM\OneToMany(targetEntity="Awa\BussinessBundle\Entity\AplicationImage", mappedBy="aaplication")
+	*/
+	protected $images;
+	
 	
     /**
      * Get id
@@ -150,6 +155,7 @@ class AAplication
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
     
     /**
@@ -234,5 +240,71 @@ class AAplication
     public function getUrlDescarga()
     {
         return $this->urlDescarga;
+    }
+
+    /**
+     * Add aplications
+     *
+     * @param \Awa\BussinessBundle\Entity\AplicationImage $aplications
+     * @return AAplication
+     */
+    public function addAplication(\Awa\BussinessBundle\Entity\AplicationImage $aplications)
+    {
+        $this->aplications[] = $aplications;
+    
+        return $this;
+    }
+
+    /**
+     * Remove aplications
+     *
+     * @param \Awa\BussinessBundle\Entity\AplicationImage $aplications
+     */
+    public function removeAplication(\Awa\BussinessBundle\Entity\AplicationImage $aplications)
+    {
+        $this->aplications->removeElement($aplications);
+    }
+
+    /**
+     * Get aplications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAplications()
+    {
+        return $this->aplications;
+    }
+
+    /**
+     * Add images
+     *
+     * @param \Awa\BussinessBundle\Entity\AplicationImage $images
+     * @return AAplication
+     */
+    public function addImage(\Awa\BussinessBundle\Entity\AplicationImage $images)
+    {
+        $this->images[] = $images;
+    
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Awa\BussinessBundle\Entity\AplicationImage $images
+     */
+    public function removeImage(\Awa\BussinessBundle\Entity\AplicationImage $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

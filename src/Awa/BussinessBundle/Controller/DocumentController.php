@@ -66,18 +66,30 @@ class DocumentController extends Controller
      * Displays a form to create a new Document entity.
      *
      * @Route("/new", name="document_new")
-     * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        $entity = new Document();
-        $form   = $this->createForm(new DocumentType(), $entity);
+		$document = new Document();
+		$form = $this->createFormBuilder($document)
+			->add('name')
+			->add('file')
+			->add('save', 'submit')
+			->getForm();
+					
+		$form->handleRequest($request);
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+
+			$document->upload();
+
+			$em->persist($document);
+			$em->flush();
+
+			return $this->redirect($this->generateUrl('document_show', array('id' => $document->getId())));
+		}
+		return array('form' => $form->createView());
     }
 
     /**
@@ -206,18 +218,7 @@ class DocumentController extends Controller
             ->getForm()
         ;
     }
-    
-    public function uploadAction()
-{
-    // ...
 
-    $form = $this->createFormBuilder($document)
-        ->add('name')
-        ->add('file')
-        ->getForm();
-
-    // ...
-}
-
+	
 
 }
