@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Awa\BussinessBundle\Entity\AAplication;
 use Awa\BussinessBundle\Form\AAplicationType;
 
+use Awa\BussinessBundle\Filter\AwaAplicationFilterType;
+
 /**
  * AAplication controller.
  *
@@ -31,10 +33,44 @@ class AAplicationController extends Controller
 
         $entities = $em->getRepository('AwaBussinessBundle:AAplication')->findAll();
 
+        $form = $this->get('form.factory')->create(new AwaAplicationFilterType());
+        if ($this->get('request')->query->has('submit-filter')) {
+            // bind values from the request
+            $form->bind($this->get('request'));
+
+            // initialize a query builder
+            $filterBuilder = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AwaBussinessBundle:AAplication')
+                ->createQueryBuilder('e');
+
+            // build the query from the given form object
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
+            $resultQuery = $filterBuilder->getQuery();
+            $fiteredEntities = $resultQuery->getArrayResult();
+
+            return array('entities' => $fiteredEntities);
+        }
+
         return array(
             'entities' => $entities,
         );
     }
+
+    /**
+     * Displays a form to edit an existing AAplication entity.
+     *
+     * @Route("/filter", name="aplication_filter")
+     * @template()
+     *
+     */
+    public function basicFilterAction()
+    {
+        $form = $this->get('form.factory')->create(new AwaAplicationFilterType());
+        return array('form' => $form->createView());
+    }
+
+
     /**
      * Creates a new AAplication entity.
      *
@@ -203,7 +239,6 @@ class AAplicationController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

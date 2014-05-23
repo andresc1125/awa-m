@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new Awa\BussinessBundle\AwaBussinessBundle(),
             new Awa\SecurityBundle\AwaSecurityBundle(),
             new Awa\StoreBundle\AwaStoreBundle(),
+	    new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle()
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
