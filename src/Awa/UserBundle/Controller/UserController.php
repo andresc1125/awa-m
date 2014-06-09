@@ -8,8 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Awa\UserBundle\Entity\User;
+use Awa\UserBundle\Entity\Role;
 use Awa\UserBundle\Form\UserType;
-
+use Awa\UserBundle\Form\UserRegistrationType;
 /**
  * User controller.
  *
@@ -44,11 +45,33 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $entity  = new User();
-        $form = $this->createForm(new UserType(), $entity);
+        $user = $this->getUser();
+        if($user != null){
+            $roles = $user->getRoles();
+            $adminRole = null;
+            foreach ($roles as $role) {
+                if($role->getName() == 'ROLE_ADMIN' || $role->getName() == 'ROLE_SUPER_ADMIN'){
+                    $adminRole = $role;
+                }
+            }
+            if($adminRole != null){
+                $form   = $this->createForm(new UserType(), $entity);
+            }else{
+                $role = $em->getRepository('AwaUserBundle:Role')->findOneBy(array('name'=>'ROLE_USER'));
+                $entity->addRole($role);
+                $form   = $this->createForm(new UserRegistrationType(), $entity);
+            }
+        }else{
+            $role = $em->getRepository('AwaUserBundle:Role')->findOneBy(array('name'=>'ROLE_USER'));
+            $entity->addRole($role);
+            $form   = $this->createForm(new UserRegistrationType(), $entity);
+        }
         $form->bind($request);
 
         if ($form->isValid()) {
+            $this->setSecurePassword($entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -72,7 +95,23 @@ class UserController extends Controller
     public function newAction()
     {
         $entity = new User();
-        $form   = $this->createForm(new UserType(), $entity);
+        $user = $this->getUser();
+        if($user != null){
+            $roles = $user->getRoles();
+            $adminRole = null;
+            foreach ($roles as $role) {
+                if($role->getName() == 'ROLE_ADMIN' || $role->getName() == 'ROLE_SUPER_ADMIN'){
+                    $adminRole = $role;
+                }
+            }
+            if($adminRole != null){
+                $form   = $this->createForm(new UserType(), $entity);
+            }else{
+                $form   = $this->createForm(new UserRegistrationType(), $entity);
+            }
+        }else{
+            $form   = $this->createForm(new UserRegistrationType(), $entity);
+        }
 
         return array(
             'entity' => $entity,
@@ -154,6 +193,7 @@ class UserController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            $this->setSecurePassword($entity);
             $em->persist($entity);
             $em->flush();
 
@@ -205,5 +245,13 @@ class UserController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+
+    private function setSecurePassword(&$entity) {
+        $entity->setSalt(md5(time()));
+        $encoder = new \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder('sha1', false, 1);
+        $password = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
+        $entity->setPassword($password);
     }
 }
