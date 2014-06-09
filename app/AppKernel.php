@@ -21,7 +21,8 @@ class AppKernel extends Kernel
             new Awa\BussinessBundle\AwaBussinessBundle(),
             new Awa\SecurityBundle\AwaSecurityBundle(),
             new Awa\StoreBundle\AwaStoreBundle(),
-	    new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle()
+	    new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
+	    new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
 
         );
 
