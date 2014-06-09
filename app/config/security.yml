@@ -39,7 +39,7 @@ security:
             security: false
 
         secured_area_admin:
-            pattern:    ^/(admin|/demo/secured)/
+            pattern:    ^/(admin|/demo/secured|user|store/user)/
             form_login:
                 check_path: login_check
                 login_path: _awa_login
