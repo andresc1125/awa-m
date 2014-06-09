@@ -1,6 +1,6 @@
 <?php
 
-namespace Awa\BussinessBundle\Filter;
+namespace Awa\BussinessBundle\Form\Filter;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
