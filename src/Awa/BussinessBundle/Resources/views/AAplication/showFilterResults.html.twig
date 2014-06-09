@@ -1,0 +1,32 @@
+{% extends 'AwaBaseBundle::base.html.twig' %}
+
+{% block body -%}
+    <h1>Car filtered results</h1>
+
+    <table class="records_list  table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>model</th>
+                <th>price</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.urlDescarga }}</td>
+                <td>{{ entity.price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('aplication_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

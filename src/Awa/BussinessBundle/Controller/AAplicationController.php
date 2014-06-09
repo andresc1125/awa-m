@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Awa\BussinessBundle\Entity\AAplication;
 use Awa\BussinessBundle\Form\AAplicationType;
 
-use Awa\BussinessBundle\Filter\AwaAplicationFilterType;
+use Awa\BussinessBundle\Form\Filter\AwaAplicationFilterType;
 
 /**
  * AAplication controller.
@@ -58,16 +58,38 @@ class AAplicationController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing AAplication entity.
+     * Displays a form to filter  existing Cars entity.
      *
-     * @Route("/filter", name="aplication_filter")
-     * @template()
+     * @Route("/filter/", name="aplication_filter")
+     * 
      *
      */
-    public function basicFilterAction()
+    public function baseFilterAction()
     {
         $form = $this->get('form.factory')->create(new AwaAplicationFilterType());
-        return array('form' => $form->createView());
+        
+        if ($this->get('request')->query->has('submit-filter')) {
+            // bind values from the request
+            $form->bind($this->get('request'));
+
+            // initialize a query builder
+            $filterBuilder = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AwaBussinessBundle:AAplication')
+                ->createQueryBuilder('e');
+
+            // build the query from the given form object
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
+            $resultQuery = $filterBuilder->getQuery();
+            $fiteredEntities = $resultQuery->getArrayResult();
+            return $this->render('AwaBussinessBundle:AAplication:showFilterResults.html.twig', array(
+              'entities' => $fiteredEntities,
+              ));
+        }
+        
+        return $this->render('AwaBussinessBundle:AAplication:baseFilter.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
 
