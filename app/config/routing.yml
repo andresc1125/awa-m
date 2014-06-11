@@ -1,3 +1,7 @@
+_store:
+    pattern:  /
+    defaults: { _controller: AwaStoreBundle:Store:index }
+
 awa_store:
     resource: "@AwaStoreBundle/Controller/"
     type:     annotation
