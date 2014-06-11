@@ -18,6 +18,9 @@ sudo chmod 777 -R app/logs app/cache
 php app/console doctrine:database:create
 php app/console doctrine:schema:update --force
 
+#load fixtures
+php app/console doctrine:fixtures:load
+
 #Test the aplication
 
 #go to
