@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Awa\UserBundle\Entity\User;
 use Awa\UserBundle\Entity\Role;
 use Awa\UserBundle\Form\UserType;
+use Awa\UserBundle\Form\UserEditType;
 use Awa\UserBundle\Form\UserRegistrationType;
 /**
  * User controller.
@@ -147,23 +148,22 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing User entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/edit", name="user_edit")
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaUserBundle:User')->find($id);
+        $entity = $this->get('security.context')->getToken()->getUser();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm = $this->createForm(new UserType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
+        $editForm = $this->createForm(new UserEditType(), $entity);
+        $deleteForm = $this->createDeleteForm($entity->getId());
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -174,22 +174,22 @@ class UserController extends Controller
     /**
      * Edits an existing User entity.
      *
-     * @Route("/{id}", name="user_update")
+     * @Route("/", name="user_update")
      * @Method("PUT")
      * @Template("AwaUserBundle:User:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaUserBundle:User')->find($id);
+        $entity = $this->get('security.context')->getToken()->getUser();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new UserType(), $entity);
+        $deleteForm = $this->createDeleteForm($entity->getId());
+        $editForm = $this->createForm(new UserEditType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
@@ -197,7 +197,7 @@ class UserController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_edit'));
         }
 
         return array(
