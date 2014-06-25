@@ -11,9 +11,8 @@ class AplicationImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('aaplication')
-            ->add('weight')
-			->add('image')
+            ->add('aaplication')
+            ->add('image')
         ;
     }
 

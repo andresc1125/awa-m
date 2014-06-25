@@ -129,7 +129,7 @@ class AplicationImage
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/documents';
+        return 'uploads/aplication_images';
     }
     
 
@@ -181,12 +181,13 @@ class AplicationImage
     }
     
     public function upload()
-	{
+    {
 		// the file property can be empty if the field is not required
 		if (null === $this->getImage()) {
 			return;
 		}
-
+		
+		$this->setWeight(100);
 		// use the original file name here but you should
 		// sanitize it at least to avoid any security issues
 
@@ -202,5 +203,5 @@ class AplicationImage
 
 		// clean up the file property as you won't need it anymore
 		$this->image = null;
-	}
+    }
 }
