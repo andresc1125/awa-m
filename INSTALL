@@ -21,7 +21,14 @@ php app/console doctrine:schema:update --force
 #load fixtures
 php app/console doctrine:fixtures:load
 
+#Create necesary folders 
+
+mkdir web/uploads
+
+mkdir web/uploads/aplication_images/  web/uploads/document/
+
 #Test the aplication
+
 
 #go to
 /web/app_dev.php/admin/
