@@ -49,4 +49,17 @@ class StoreController extends Controller
             'entity' => $entity,
         );
     }
+
+    /**
+     * Lists all AAplication entities.
+     *
+     * @Route("/user", name="store_show_user")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showUserAction()
+    {
+        return $this->redirect($this->generateUrl('user_show'));
+    }
+
 }

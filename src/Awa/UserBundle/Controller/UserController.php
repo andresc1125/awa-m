@@ -122,25 +122,25 @@ class UserController extends Controller
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/{id}", name="user_show")
+     * @Route("/show", name="user_show")
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaUserBundle:User')->find($id);
+        $entity = $this->get('security.context')->getToken()->getUser();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        //$deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+           // 'delete_form' => $deleteForm->createView(),
         );
     }
 
