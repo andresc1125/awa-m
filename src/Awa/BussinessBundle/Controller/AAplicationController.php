@@ -3,6 +3,7 @@
 namespace Awa\BussinessBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -68,7 +69,7 @@ class AAplicationController extends Controller
     {
         $form = $this->get('form.factory')->create(new AwaAplicationFilterType());
         
-        if ($this->get('request')->query->has('submit-filter')) {
+        if (($this->get('request')->query->has('submit-filter')) || $this->get('request')->isXmlHttpRequest()) {
             // bind values from the request
             $form->bind($this->get('request'));
 
@@ -82,6 +83,16 @@ class AAplicationController extends Controller
 
             $resultQuery = $filterBuilder->getQuery();
             $fiteredEntities = $resultQuery->getArrayResult();
+            
+            if($this->get('request')->isXmlHttpRequest())
+            {
+              $response = new JsonResponse();
+              $response->setData(array(
+                'entities' => json_encode($fiteredEntities)
+              ));
+              return $response;
+            }
+            
             return $this->render('AwaBussinessBundle:AAplication:showFilterResults.html.twig', array(
               'entities' => $fiteredEntities,
               ));
@@ -91,7 +102,6 @@ class AAplicationController extends Controller
             'form' => $form->createView(),
         ));
     }
-
 
     /**
      * Creates a new AAplication entity.

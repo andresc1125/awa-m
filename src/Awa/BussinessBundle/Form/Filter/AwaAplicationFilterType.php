@@ -11,7 +11,8 @@ class AwaAplicationFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'filter_text');
-        $builder->add('price', 'filter_number');
+        $builder->add('price', 'filter_choice');
+        $builder->add('urlDescarga', 'filter_choice');
     }
 
     public function getName()

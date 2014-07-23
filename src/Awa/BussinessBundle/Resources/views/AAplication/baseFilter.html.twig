@@ -1,8 +1,12 @@
 {% extends "AwaBaseBundle::base.html.twig" %}
 
 {% block body %}
-<form method="get" action=".">
+<form method="get" action="." id="Aaplication_filter_form">
     {{ form_rest(form) }}
     <input type="submit" name="submit-filter" value="filter" />
 </form>
 {% endblock %}
+
+    {% block javascripts -%}
+      <script src="{{ asset('js/filters/autoFilters.js') }}"></script> 
+    {% endblock %}
