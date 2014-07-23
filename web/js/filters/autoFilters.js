@@ -10,7 +10,6 @@ $("#awa_aplication_filer_name").on('change paste', function() {
           //sacar los precios
          for (index = 0; index < elements.length; ++index) {
                           prices[index] = elements[index].price;
-                          alert(elements[index]);
                       }
          //borrar los precios repetidos
                   uniqueArray = prices.filter(function(elem, pos) {
