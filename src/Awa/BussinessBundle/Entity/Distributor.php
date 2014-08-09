@@ -30,6 +30,13 @@ class Distributor
      */
     private $name;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="authorized", type="boolean")
+     */
+    private $authorized;
+
 	/**
 	* @ORM\OneToMany(targetEntity="Awa\BussinessBundle\Entity\AAplication", mappedBy="distributor")
 	*/
@@ -111,4 +118,27 @@ class Distributor
     {
 		return $this->name;
 	}
+
+    /**
+     * Set authorized
+     *
+     * @param boolean $authorized
+     * @return Distributor
+     */
+    public function setAuthorized($authorized)
+    {
+        $this->authorized = $authorized;
+    
+        return $this;
+    }
+
+    /**
+     * Get authorized
+     *
+     * @return boolean 
+     */
+    public function getAuthorized()
+    {
+        return $this->authorized;
+    }
 }
