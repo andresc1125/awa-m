@@ -43,6 +43,12 @@ class AAplication
      */
     private $price;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="authorized", type="boolean")
+     */
+    private $authorized;
 	
 	/**
 	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\Distributor", inversedBy="aplications")
@@ -335,5 +341,28 @@ class AAplication
     public function getPlatform()
     {
         return $this->platform;
+    }
+
+    /**
+     * Set authorized
+     *
+     * @param boolean $authorized
+     * @return AAplication
+     */
+    public function setAuthorized($authorized)
+    {
+        $this->authorized = $authorized;
+    
+        return $this;
+    }
+
+    /**
+     * Get authorized
+     *
+     * @return boolean 
+     */
+    public function getAuthorized()
+    {
+        return $this->authorized;
     }
 }
