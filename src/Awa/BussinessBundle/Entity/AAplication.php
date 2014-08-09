@@ -67,6 +67,12 @@ class AAplication
 	* @ORM\OneToMany(targetEntity="Awa\BussinessBundle\Entity\AplicationImage", mappedBy="aaplication")
 	*/
 	protected $images;
+
+	/**
+	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\Platform", inversedBy="aplications")
+	* @ORM\JoinColumn(name="platform_id", referencedColumnName="id")
+	*/
+	protected $platform;
 	
 	
     /**
@@ -306,5 +312,28 @@ class AAplication
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Set platform
+     *
+     * @param \Awa\BussinessBundle\Entity\Platform $platform
+     * @return AAplication
+     */
+    public function setPlatform(\Awa\BussinessBundle\Entity\Platform $platform = null)
+    {
+        $this->platform = $platform;
+    
+        return $this;
+    }
+
+    /**
+     * Get platform
+     *
+     * @return \Awa\BussinessBundle\Entity\Platform 
+     */
+    public function getPlatform()
+    {
+        return $this->platform;
     }
 }

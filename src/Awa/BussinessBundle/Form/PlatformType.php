@@ -6,30 +6,34 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AAplicationType extends AbstractType
+class PlatformType extends AbstractType
 {
+        /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('urlDescarga')
-            ->add('price')
-            ->add('distributor')
-            ->add('currency')
-            ->add('categories')
-            ->add('platform')
         ;
     }
-
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Awa\BussinessBundle\Entity\AAplication'
+            'data_class' => 'Awa\BussinessBundle\Entity\Platform'
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
-        return 'awa_bussinessbundle_aaplicationtype';
+        return 'awa_bussinessbundle_platform';
     }
 }
