@@ -22,7 +22,13 @@ class AppKernel extends Kernel
             new Awa\SecurityBundle\AwaSecurityBundle(),
             new Awa\StoreBundle\AwaStoreBundle(),
 	    new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
-	    new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
+	    new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+	    new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+	    new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
 
         );
 

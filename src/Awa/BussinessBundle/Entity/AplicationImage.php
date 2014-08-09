@@ -204,4 +204,9 @@ class AplicationImage
 		// clean up the file property as you won't need it anymore
 		$this->image = null;
     }
+    
+    public function __tostring()
+    {
+      return $this->path;
+    }
 }
