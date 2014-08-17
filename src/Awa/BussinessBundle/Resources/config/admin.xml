@@ -3,9 +3,36 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
        <service id="sonata.admin.aplication" class="Awa\BussinessBundle\SonataAdmin\AplicationSonataAdmin">
-          <tag name="sonata.admin" manager_type="orm" group="Content" label="Aplication"/>
+          <tag name="sonata.admin" manager_type="orm" group="Content" label="Aplications"/>
           <argument />
           <argument>Awa\BussinessBundle\Entity\AAplication</argument>
+          <argument />
+          <call method="setTranslationDomain">
+              <argument>AwaBussinessBundle</argument>
+          </call>
+      </service>
+      <service id="sonata.admin.aplicationimage" class="Awa\BussinessBundle\SonataAdmin\AplicationImageSonataAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Content" label="Aplication Images"/>
+          <argument />
+          <argument>Awa\BussinessBundle\Entity\AplicationImage</argument>
+          <argument />
+          <call method="setTranslationDomain">
+              <argument>AwaBussinessBundle</argument>
+          </call>
+      </service>
+      <service id="sonata.admin.category" class="Awa\BussinessBundle\SonataAdmin\CategorySonataAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Content" label="Categories"/>
+          <argument />
+          <argument>Awa\BussinessBundle\Entity\Category</argument>
+          <argument />
+          <call method="setTranslationDomain">
+              <argument>AwaBussinessBundle</argument>
+          </call>
+      </service>
+      <service id="sonata.admin.currency" class="Awa\BussinessBundle\SonataAdmin\CurrencySonataAdmin">
+          <tag name="sonata.admin" manager_type="orm" group="Content" label="Currencies"/>
+          <argument />
+          <argument>Awa\BussinessBundle\Entity\Currency</argument>
           <argument />
           <call method="setTranslationDomain">
               <argument>AwaBussinessBundle</argument>
