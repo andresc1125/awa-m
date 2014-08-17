@@ -44,6 +44,7 @@ class DistributorController extends Controller
      */
     public function createAction(Request $request)
     {
+        $user = $this->get('security.context')->getToken()->getUser();
         $entity  = new Distributor();
         $form = $this->createForm(new DistributorType(), $entity);
         $form->bind($request);
@@ -51,6 +52,7 @@ class DistributorController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+            $user->setDistributor($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('distributor_show', array('id' => $entity->getId())));

@@ -119,12 +119,8 @@ class AAplicationController extends Controller
         $form->bind($request);
 
 
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        $distributor = $user->getDistributor();
 
         if ($form->isValid()) {
-            $entity->setDistributor($distributor);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -150,9 +146,12 @@ class AAplicationController extends Controller
         $entity  = new AAplication();
         $form = $this->createForm(new AAplicationDistributorType(), $entity);
         $form->bind($request);
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $distributor = $em->getRepository('AwaBussinessBundle:Distributor')->findOneBy(array('user' => $user));
+        $entity->setDistributor($distributor);
 
         if ($form->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -239,7 +238,7 @@ class AAplicationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.context')->getToken()->getUser();
-        $distributor = $user->getDistributor();
+        $distributor = $em->getRepository('AwaBussinessBundle:Distributor')->findOneBy(array('user' => $user));
         $apps = $distributor->getAplications();
 
         return array(
