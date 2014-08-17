@@ -8,6 +8,8 @@ use Awa\UserBundle\Entity\Role;
 use Awa\UserBundle\Entity\User;
 use Awa\BussinessBundle\Entity\Category;
 use Awa\BussinessBundle\Entity\Currency;
+use Awa\BussinessBundle\Entity\Platform;
+use Awa\BussinessBundle\Entity\Distributor;
 
 
 class LoadBaseConfigurationData implements FixtureInterface
@@ -90,7 +92,36 @@ class LoadBaseConfigurationData implements FixtureInterface
       //Currency
       $usdCurrency =  new Currency();
       $usdCurrency->setName("USD");
-      $manager->persist($gameCategory);
+      $manager->persist($usdCurrency);
       $manager->flush();
+      
+      //platforms
+      $android =  new Platform();
+      $android->setName("Android");
+      $manager->persist($android);
+      $manager->flush();
+      
+      $iOs =  new Platform();
+      $iOs->setName("iOs");
+      $manager->persist($iOs);
+      $manager->flush();
+      
+      $blackberry =  new Platform();
+      $blackberry->setName("Blackberry");
+      $manager->persist($blackberry);
+      $manager->flush();
+      
+      $windowsPhone =  new Platform();
+      $windowsPhone->setName("Windows Phone");
+      $manager->persist($windowsPhone);
+      $manager->flush();
+      
+      //Distributors
+      $distributor =  new Distributor();
+      $distributor->setName("Awa");
+      $distributor->setAuthorized(true);
+      $manager->persist($distributor);
+      $manager->flush();
+      
     }
 }
