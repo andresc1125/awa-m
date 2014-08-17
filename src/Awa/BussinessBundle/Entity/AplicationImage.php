@@ -34,7 +34,7 @@ class AplicationImage
     /**
      * @var integer
      *
-     * @ORM\Column(name="weight", type="integer")
+     * @ORM\Column(name="weight", type="integer", nullable=true)
      */
     private $weight;
     
@@ -42,7 +42,7 @@ class AplicationImage
 	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\AAplication", inversedBy="images")
 	* @ORM\JoinColumn(name="aplication_id", referencedColumnName="id")
 	*/
-	protected $aaplication;
+    protected $aaplication;
     
 
 
@@ -79,9 +79,9 @@ class AplicationImage
         return $this->path;
     }
     
-     /**
-     * @Assert\File(maxSize="6000000")
-     */
+    /**
+    * @Assert\File(maxSize="6000000")
+    */
     private $image;
 
     /**
@@ -187,7 +187,6 @@ class AplicationImage
 			return;
 		}
 		
-		$this->setWeight(100);
 		// use the original file name here but you should
 		// sanitize it at least to avoid any security issues
 
@@ -198,6 +197,7 @@ class AplicationImage
 			$this->getImage()->getClientOriginalName()
 		);
 
+		$this->setWeight(filesize($this->getAbsolutePath()));
 		// set the path property to the filename where you've saved the file
 		$this->path = $this->getImage()->getClientOriginalName();
 

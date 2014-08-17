@@ -106,4 +106,10 @@ class Platform
     {
         return $this->aplications;
     }
+    
+    public function __toString()
+    {
+      return $this->name;
+    }
+
 }

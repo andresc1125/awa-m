@@ -28,6 +28,13 @@ class Currency
      */
     private $name;
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="symbol", type="string", length=255)
+     */
+    private $symbol;
+    
 	/**
 	* @ORM\OneToMany(targetEntity="Awa\BussinessBundle\Entity\AAplication", mappedBy="currency")
 	*/
@@ -65,6 +72,28 @@ class Currency
     public function getName()
     {
         return $this->name;
+    }
+    
+        /**
+     * Set symbol
+     *
+     * @param string $symbol
+     * @return Currency
+     */
+    public function setSymbol($symbol)
+    {
+        $this->symbol = $symbol;
+        return $this;
+    }
+
+    /**
+     * Get symbol
+     *
+     * @return string 
+     */
+    public function getSymbol()
+    {
+        return $this->symbol;
     }
     /**
      * Constructor
