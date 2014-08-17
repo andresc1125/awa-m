@@ -53,6 +53,7 @@ class DistributorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $user->setDistributor($entity);
+            $entity->setAuthorized(false);
             $em->flush();
 
             return $this->redirect($this->generateUrl('distributor_show', array('id' => $entity->getId())));
