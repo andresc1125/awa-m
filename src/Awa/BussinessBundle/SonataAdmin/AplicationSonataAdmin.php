@@ -15,10 +15,13 @@ class AplicationSonataAdmin extends Admin
         $formMapper
             ->add('name', 'text', array('label' => 'Aplication Title'))
             ->add('urlDescarga', 'url', array('label' => 'App Url'))
-            ->add('authorized',null , array('label' => 'Authorized'))
-            ->add('distributor', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Distributor'))
             ->add('price', null, array('required' => false)) //if no type is specified, SonataAdminBundle tries to guess it
-            ->add('images')
+            ->add('images','entity',array('required' => false,'class' => 'Awa\BussinessBundle\Entity\AplicationImage'))
+            ->add('distributor', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Distributor'))
+            ->add('currency', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Currency'))
+            ->add('categories', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Category'))
+            ->add('platform', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Platform'))
+            ->add('authorized',null , array('label' => 'Authorized'))
         ;
     }
 
@@ -26,8 +29,15 @@ class AplicationSonataAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('distributor')
+            ->add('name', null , array('label' => 'Aplication Title'))
+            ->add('urlDescarga', null , array('label' => 'App Url'))
+            ->add('price', null, array('required' => false)) //if no type is specified, SonataAdminBundle tries to guess it
+            ->add('images',null,array('required' => false,'class' => 'Awa\BussinessBundle\Entity\AplicationImage'))
+            ->add('distributor', null, array('class' => 'Awa\BussinessBundle\Entity\Distributor'))
+            ->add('currency', null, array('class' => 'Awa\BussinessBundle\Entity\Currency'))
+            ->add('categories', null, array('class' => 'Awa\BussinessBundle\Entity\Category'))
+            ->add('platform', null, array('class' => 'Awa\BussinessBundle\Entity\Platform'))
+            ->add('authorized',null , array('label' => 'Authorized'))
         ;
     }
 
@@ -35,9 +45,15 @@ class AplicationSonataAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
-            ->add('distributor')
-            ->add('price')
+            ->add('name', 'text', array('label' => 'Aplication Title'))
+            ->add('urlDescarga', 'url', array('label' => 'App Url'))
+            ->add('price', null, array('required' => false)) //if no type is specified, SonataAdminBundle tries to guess it
+            ->add('images','entity',array('required' => false,'class' => 'Awa\BussinessBundle\Entity\AplicationImage'))
+            ->add('distributor', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Distributor'))
+            ->add('currency', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Currency'))
+            ->add('categories', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Category'))
+            ->add('platform', 'entity', array('class' => 'Awa\BussinessBundle\Entity\Platform'))
+            ->add('authorized',null , array('label' => 'Authorized'))
         ;
     }
 }
