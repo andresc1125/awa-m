@@ -9,7 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Awa\BussinessBundle\Entity\AAplication;
+use Awa\BussinessBundle\Entity\Distributor;
 use Awa\BussinessBundle\Form\AAplicationType;
+use Awa\BussinessBundle\Form\AAplicationDistributorType;
 
 use Awa\BussinessBundle\Form\Filter\AwaAplicationFilterType;
 
@@ -116,6 +118,39 @@ class AAplicationController extends Controller
         $form = $this->createForm(new AAplicationType(), $entity);
         $form->bind($request);
 
+
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('aplication_show', array('id' => $entity->getId())));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * Creates a new AAplication entity.
+     *
+     * @Route("/", name="aplication_distributor_create")
+     * @Method("POST")
+     * @Template("AwaBussinessBundle:AAplication:new.html.twig")
+     */
+    public function createAppDistributorAction(Request $request)
+    {
+        $entity  = new AAplication();
+        $form = $this->createForm(new AAplicationDistributorType(), $entity);
+        $form->bind($request);
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $distributor = $em->getRepository('AwaBussinessBundle:Distributor')->findOneBy(array('user' => $user));
+        $entity->setDistributor($distributor);
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -140,7 +175,25 @@ class AAplicationController extends Controller
     public function newAction()
     {
         $entity = new AAplication();
-        $form   = $this->createForm(new AAplicationType(), $entity);
+        $form   = $this->createForm(new AAplicationDistributorType(), $entity);
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+     /**
+     * Displays a form to create a new AAplication entity.
+     *
+     * @Route("/add", name="aplication_distributor_new")
+     * @Method("GET")
+     * @Template()
+     */
+    public function addAction()
+    {
+        $entity = new AAplication();
+        $form   = $this->createForm(new AAplicationDistributorType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -170,6 +223,26 @@ class AAplicationController extends Controller
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+        );
+    }
+
+    /**
+     * Finds and displays a AAplication entity.
+     *
+     * @Route("/show", name="show_distributor_apps")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showDistributorAppsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.context')->getToken()->getUser();
+        $distributor = $em->getRepository('AwaBussinessBundle:Distributor')->findOneBy(array('user' => $user));
+        $apps = $distributor->getAplications();
+
+        return array(
+            'entities'      => $apps,
         );
     }
 

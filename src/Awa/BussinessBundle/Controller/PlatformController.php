@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Awa\BussinessBundle\Entity\Distributor;
-use Awa\BussinessBundle\Form\DistributorType;
+use Awa\BussinessBundle\Entity\Platform;
+use Awa\BussinessBundle\Form\PlatformType;
 
 /**
- * Distributor controller.
+ * Platform controller.
  *
- * @Route("/distributor")
+ * @Route("/platform")
  */
-class DistributorController extends Controller
+class PlatformController extends Controller
 {
 
     /**
-     * Lists all Distributor entities.
+     * Lists all Platform entities.
      *
-     * @Route("/", name="distributor")
+     * @Route("/", name="platform")
      * @Method("GET")
      * @Template()
      */
@@ -29,34 +29,31 @@ class DistributorController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AwaBussinessBundle:Distributor')->findAll();
+        $entities = $em->getRepository('AwaBussinessBundle:Platform')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new Distributor entity.
+     * Creates a new Platform entity.
      *
-     * @Route("/", name="distributor_create")
+     * @Route("/", name="platform_create")
      * @Method("POST")
-     * @Template("AwaBussinessBundle:Distributor:new.html.twig")
+     * @Template("AwaBussinessBundle:Platform:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-        $entity  = new Distributor();
-        $form = $this->createForm(new DistributorType(), $entity);
+        $entity  = new Platform();
+        $form = $this->createForm(new PlatformType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
-            $user->setDistributor($entity);
-            $entity->setAuthorized(false);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('distributor_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('platform_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -66,16 +63,16 @@ class DistributorController extends Controller
     }
 
     /**
-     * Displays a form to create a new Distributor entity.
+     * Displays a form to create a new Platform entity.
      *
-     * @Route("/new", name="distributor_new")
+     * @Route("/new", name="platform_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Distributor();
-        $form   = $this->createForm(new DistributorType(), $entity);
+        $entity = new Platform();
+        $form   = $this->createForm(new PlatformType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -84,9 +81,9 @@ class DistributorController extends Controller
     }
 
     /**
-     * Finds and displays a Distributor entity.
+     * Finds and displays a Platform entity.
      *
-     * @Route("/{id}", name="distributor_show")
+     * @Route("/{id}", name="platform_show")
      * @Method("GET")
      * @Template()
      */
@@ -94,10 +91,10 @@ class DistributorController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaBussinessBundle:Distributor')->find($id);
+        $entity = $em->getRepository('AwaBussinessBundle:Platform')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Distributor entity.');
+            throw $this->createNotFoundException('Unable to find Platform entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -109,9 +106,9 @@ class DistributorController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Distributor entity.
+     * Displays a form to edit an existing Platform entity.
      *
-     * @Route("/{id}/edit", name="distributor_edit")
+     * @Route("/{id}/edit", name="platform_edit")
      * @Method("GET")
      * @Template()
      */
@@ -119,13 +116,13 @@ class DistributorController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaBussinessBundle:Distributor')->find($id);
+        $entity = $em->getRepository('AwaBussinessBundle:Platform')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Distributor entity.');
+            throw $this->createNotFoundException('Unable to find Platform entity.');
         }
 
-        $editForm = $this->createForm(new DistributorType(), $entity);
+        $editForm = $this->createForm(new PlatformType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -136,31 +133,31 @@ class DistributorController extends Controller
     }
 
     /**
-     * Edits an existing Distributor entity.
+     * Edits an existing Platform entity.
      *
-     * @Route("/{id}", name="distributor_update")
+     * @Route("/{id}", name="platform_update")
      * @Method("PUT")
-     * @Template("AwaBussinessBundle:Distributor:edit.html.twig")
+     * @Template("AwaBussinessBundle:Platform:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AwaBussinessBundle:Distributor')->find($id);
+        $entity = $em->getRepository('AwaBussinessBundle:Platform')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Distributor entity.');
+            throw $this->createNotFoundException('Unable to find Platform entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new DistributorType(), $entity);
+        $editForm = $this->createForm(new PlatformType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('distributor_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('platform_edit', array('id' => $id)));
         }
 
         return array(
@@ -170,9 +167,9 @@ class DistributorController extends Controller
         );
     }
     /**
-     * Deletes a Distributor entity.
+     * Deletes a Platform entity.
      *
-     * @Route("/{id}", name="distributor_delete")
+     * @Route("/{id}", name="platform_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -182,21 +179,21 @@ class DistributorController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AwaBussinessBundle:Distributor')->find($id);
+            $entity = $em->getRepository('AwaBussinessBundle:Platform')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Distributor entity.');
+                throw $this->createNotFoundException('Unable to find Platform entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('distributor'));
+        return $this->redirect($this->generateUrl('platform'));
     }
 
     /**
-     * Creates a form to delete a Distributor entity by id.
+     * Creates a form to delete a Platform entity by id.
      *
      * @param mixed $id The entity id
      *

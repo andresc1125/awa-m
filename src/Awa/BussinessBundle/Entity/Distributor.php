@@ -42,6 +42,11 @@ class Distributor
 	*/
 	protected $aplications;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Awa\UserBundle\Entity\User", mappedBy="distributor")
+    */
+    protected $users;
+
 	
 	public function __construct()
 	{
@@ -140,5 +145,38 @@ class Distributor
     public function getAuthorized()
     {
         return $this->authorized;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Awa\UserBundle\Entity\User $users
+     * @return Distributor
+     */
+    public function addUser(\Awa\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Awa\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Awa\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

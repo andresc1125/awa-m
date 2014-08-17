@@ -54,6 +54,12 @@ class User implements AdvancedUserInterface, \Serializable
 	*/
 	private $roles;
 
+    /**
+    * @ORM\OneToOne(targetEntity="Awa\BussinessBundle\Entity\Distributor")
+    * @ORM\JoinColumn(name="distributor_id", referencedColumnName="id")
+    */
+    private $distributor;
+
 	
     public function __construct()
     {
@@ -264,4 +270,27 @@ class User implements AdvancedUserInterface, \Serializable
     {
 		return $this->username;
 	}
+
+    /**
+     * Set distributor
+     *
+     * @param \Awa\BussinessBundle\Entity\Distributor $distributor
+     * @return User
+     */
+    public function setDistributor(\Awa\BussinessBundle\Entity\Distributor $distributor = null)
+    {
+        $this->distributor = $distributor;
+    
+        return $this;
+    }
+
+    /**
+     * Get distributor
+     *
+     * @return \Awa\BussinessBundle\Entity\Distributor 
+     */
+    public function getDistributor()
+    {
+        return $this->distributor;
+    }
 }
