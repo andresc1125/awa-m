@@ -59,7 +59,7 @@ class StoreController extends Controller
      */
     public function showUserAction()
     {
-        return $this->redirect($this->generateUrl('user_show'));
+        return $this->render('AwaStoreBundle:Store:showUser.html.twig');
     }
 
 }
