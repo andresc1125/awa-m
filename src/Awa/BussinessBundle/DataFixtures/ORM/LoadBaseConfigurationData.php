@@ -92,6 +92,7 @@ class LoadBaseConfigurationData implements FixtureInterface
       //Currency
       $usdCurrency =  new Currency();
       $usdCurrency->setName("USD");
+      $usdCurrency->setSymbol("$");
       $manager->persist($usdCurrency);
       $manager->flush();
       
