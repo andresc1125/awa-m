@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -10,9 +11,17 @@
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 		<!-- Optional theme -->
-		<link rel="stylesheet" href="{{ asset('css/store/css/starter-store.css') }}">
+		<!--<link rel="stylesheet" href="{{ asset('css/store/css/starter-store.css') }}">
+		-->
+
+		<link rel="stylesheet" href="{{ asset('css/store/css/web_theme.css') }}">
+
+		<!--   jcarrusel -->
+		<link rel="stylesheet" href="{{ asset('css/store/css/jcarousel.basic.css') }}">		
+
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="{{ asset('css/bootstrap/css/js/bootstrap.min.js') }}"></script> 
+
 		
 		<!-- Custom styles for this template -->
 		<link href="vendor/css/starter-template.css" rel="stylesheet">
@@ -21,25 +30,126 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         
-        <!-- jquery -->
+        <!-- jquery and libs-->
         <script src="{{ asset('jquery/jquery-2.1.0.js') }}"></script> 
-        
+        <script src="{{ asset('js/store/js/jquery.jcarousel1.min.js') }}"></script> 
+        <script src="{{ asset('js/store/js/web_js.js') }}"></script> 
+        <script src="{{ asset('js/store/js/leftbar.js') }}"></script> 
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
     </head>
     <body>
 		
+		{% block carousel%}
+			<div class="clear"></div>
+		    <div class="jumbotron" id="jumbo">
+		        <h1>
+		          Tristán
+		        </h1>
+		    </div> <!--end jumbotron-->    
+		        <div class="">
+		            <div class="jcarousel-wrapper ">
+		                <div class="jcarousel" >
+		                    <div>
+		                        <p><img src="images/9gag.png" width="200" height="150" alt=""></p>
+		                        <p><img src="images/bridge.png" width="200" height="150" alt=""></p>
+		                        <p><img src="images/contact.png" width="200" height="150" alt=""></p>
+		                        <p><img src="images/dragon.png" width="200" height="150" alt=""></p>
+		                        <p><img src="images/fiends.png" width="200" height="150" alt=""></p>
+		                        <p><img src="images/wat.png" width="200" height="150" alt=""></p>
+		                    </div>
+		                </div>
+		                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+		                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+		                
+		                <p class="jcarousel-pagination">
+		                
+		                </p>
+		            </div>
+		        </div>
+		{% endblock %}
+
+		{% block navbar%}
+			<nav id="main-navbar" class="grid_24 navbar navbar-default" role="navigation" >
+		        <div class="container-fluid">
+		           <div class="navbar-header">
+		              <ul  class="nav navbar-nav">
+		                <li><a href="#">Principal</a></li>
+		                <li><a href="#">Recomendados</a></li>
+		                <li><a href="#">Sin fama</a></li>
+		                <li><a href="#">Random App</a></li>
+		              </ul>      
+		          </div>
+		        </div>
+		      </nav> 
+		{% endblock %}
+
 		{% block leftbar %}
+		<!--
 			<div class="left-bar" id="base-left-bar">
 				<br>Contenido</br>
 				{% block  leftContent%}
 					<div class="content" id="left-contet">
 						<ul>
-							<li><a href="{{ path('distributor') }}">Distributors</a></li>
+							<li><a href="{{ path('distributor') }}">Disributors</a></li>
 							<li><a href="{{ path('category') }}">Categories</a></li>
 							<li><a href="{{ path('store') }}">Apps</a></li>
 						</ul>						
 					</div>
 				{% endblock %}
 			</div>
+			-->
+			<aside class="bar left-bar grid_5 col-md-5" >
+				<nav class="nav nav-pills nav-stacked">
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+										<ul class="nav nav-pills nav-stacked">
+											<div class="glyphicon glyphicon-th-list">
+												Aplicaciones
+											</div>
+										</ul>	
+									</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<ul class="nav nav-pills nav-stacked" >
+										<li><a href="#">Todas</a></li>
+										<li><a href="{{ path('category') }}">Categorías</a></li>
+										<li><a href="#">Plan oro</a></li>
+										<li><a href="#">Plan plata</a></li>
+										<li><a href="#">Plan bronce</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+										<ul class="nav nav-pills nav-stacked">
+											<div class="glyphicon glyphicon-th-list">
+												Distribuidores
+											</div>
+										</ul>	
+									</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse">
+								<div class="panel-body">
+									<ul class="nav nav-pills nav-stacked">
+										<li><a href="{{ path('distributor') }}">Todos</a></li>
+										<li><a href="#">Destacados</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+		    </aside>
 		{% endblock %}
 		
 		{% block body %}
@@ -49,9 +159,7 @@
 		{% endblock %}
 		
 		{% block footer %}
-			<div class="footer" id="bas-footer">
-				Tristán®
-			</div>
+			<footer class="grid_24" >©2014 Tristan</footer>
 		{% endblock %}
 		
 		{% block javascripts %}
