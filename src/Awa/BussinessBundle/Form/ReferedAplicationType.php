@@ -16,7 +16,7 @@ class ReferedAplicationType extends AbstractType
     {
         $builder
             ->add('aplication')
-            ->add('bussinessCategoryId')
+            ->add('bussinessCategory')
         ;
     }
     

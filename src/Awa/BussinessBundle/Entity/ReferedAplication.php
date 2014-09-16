@@ -23,15 +23,15 @@ class ReferedAplication
     
     /**
      * @ORM\OneToOne(targetEntity="AAplication")
-     * @ORM\JoinColumn(name="aplication_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="aplication_id",referencedColumnName="id")
      **/
     private $aplication;
     
     /**
-     * @ORM\OneToOne(targetEntity="BussinessCategory")
-     * @ORM\JoinColumn(name="bussiness_category_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="BussinessCategory",inversedBy="referedApps")
+     * @ORM\JoinColumn(name="bussiness_category_id",referencedColumnName="id")
      **/
-    private $bussinessCategoryId;
+    private $bussinessCategory;
 
 
     /**
@@ -73,9 +73,9 @@ class ReferedAplication
      * @param \Awa\BussinessBundle\Entity\BussinessCategory $bussinessCategoryId
      * @return ReferedAplication
      */
-    public function setBussinessCategoryId(\Awa\BussinessBundle\Entity\BussinessCategory $bussinessCategoryId = null)
+    public function setBussinessCategory(\Awa\BussinessBundle\Entity\BussinessCategory $bussinessCategory = null)
     {
-        $this->bussinessCategoryId = $bussinessCategoryId;
+        $this->bussinessCategory = $bussinessCategory;
     
         return $this;
     }
@@ -85,8 +85,8 @@ class ReferedAplication
      *
      * @return \Awa\BussinessBundle\Entity\BussinessCategory 
      */
-    public function getBussinessCategoryId()
+    public function getBussinessCategory()
     {
-        return $this->bussinessCategoryId;
+        return $this->bussinessCategory;
     }
 }

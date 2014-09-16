@@ -3,6 +3,7 @@
 namespace Awa\BussinessBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * BussinessCategory
@@ -28,6 +29,15 @@ class BussinessCategory
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ReferedAplication",mappedBy="bussinessCategory")
+     **/
+    private $referedApps;
+    
+
+    public function __construct() {
+        $this->features = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -70,5 +80,38 @@ class BussinessCategory
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * Add referedApps
+     *
+     * @param \Awa\BussinessBundle\Entity\ReferedAplication $referedApps
+     * @return BussinessCategory
+     */
+    public function addReferedApp(\Awa\BussinessBundle\Entity\ReferedAplication $referedApps)
+    {
+        $this->referedApps[] = $referedApps;
+    
+        return $this;
+    }
+
+    /**
+     * Remove referedApps
+     *
+     * @param \Awa\BussinessBundle\Entity\ReferedAplication $referedApps
+     */
+    public function removeReferedApp(\Awa\BussinessBundle\Entity\ReferedAplication $referedApps)
+    {
+        $this->referedApps->removeElement($referedApps);
+    }
+
+    /**
+     * Get referedApps
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReferedApps()
+    {
+        return $this->referedApps;
     }
 }
