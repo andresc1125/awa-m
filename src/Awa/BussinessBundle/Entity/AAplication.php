@@ -166,8 +166,8 @@ class AAplication
      */
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
-        $this->images = new ArrayCollection();
+        $this->categories =  new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -252,39 +252,6 @@ class AAplication
     public function getUrlDescarga()
     {
         return $this->urlDescarga;
-    }
-
-    /**
-     * Add aplications
-     *
-     * @param \Awa\BussinessBundle\Entity\AplicationImage $aplications
-     * @return AAplication
-     */
-    public function addAplication(\Awa\BussinessBundle\Entity\AplicationImage $aplications)
-    {
-        $this->aplications[] = $aplications;
-    
-        return $this;
-    }
-
-    /**
-     * Remove aplications
-     *
-     * @param \Awa\BussinessBundle\Entity\AplicationImage $aplications
-     */
-    public function removeAplication(\Awa\BussinessBundle\Entity\AplicationImage $aplications)
-    {
-        $this->aplications->removeElement($aplications);
-    }
-
-    /**
-     * Get aplications
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAplications()
-    {
-        return $this->aplications;
     }
 
     /**
