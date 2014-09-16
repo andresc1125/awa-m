@@ -192,14 +192,16 @@ class AplicationImage
 
 		// move takes the target directory and then the
 		// target filename to move to
+		$namePrefix =  date('H-mm-ss').rand(0, 10000);
 		$this->getImage()->move(
 			$this->getUploadRootDir(),
-			$this->getImage()->getClientOriginalName()
+			$namePrefix.$this->getImage()->getClientOriginalName()
 		);
-
-		$this->setWeight(filesize($this->getAbsolutePath()));
+                $newName = $namePrefix.$this->getImage()->getClientOriginalName();
+                $newFullPath = $this->getUploadRootDir().DIRECTORY_SEPARATOR.$newName;
+		$this->setWeight(filesize($newFullPath));
 		// set the path property to the filename where you've saved the file
-		$this->path = $this->getImage()->getClientOriginalName();
+		$this->path = $newName;
 
 		// clean up the file property as you won't need it anymore
 		$this->image = null;
