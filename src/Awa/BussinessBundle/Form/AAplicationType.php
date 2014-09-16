@@ -18,6 +18,7 @@ class AAplicationType extends AbstractType
             ->add('currency')
             ->add('categories')
             ->add('platform')
+            ->add('authorized')
         ;
     }
 
