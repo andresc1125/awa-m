@@ -44,6 +44,8 @@ class StoreController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AwaBussinessBundle:AAplication')->find($id);
+        $entity->setAmountVisits($entity->getAmountVisits()+1);
+        $em->flush($entity);
 
         return array(
             'entity' => $entity,

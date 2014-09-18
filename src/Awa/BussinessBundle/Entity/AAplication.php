@@ -42,6 +42,13 @@ class AAplication
      * @ORM\Column(name="price", type="decimal")
      */
     private $price;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="amountVisits", type="integer")
+     */
+    private $amountVisits;
 
     /**
      * @var boolean
@@ -331,5 +338,28 @@ class AAplication
     public function getAuthorized()
     {
         return $this->authorized;
+    }
+
+    /**
+     * Set amountVisits
+     *
+     * @param integer $amountVisits
+     * @return AAplication
+     */
+    public function setAmountVisits($amountVisits)
+    {
+        $this->amountVisits = $amountVisits;
+    
+        return $this;
+    }
+
+    /**
+     * Get amountVisits
+     *
+     * @return integer 
+     */
+    public function getAmountVisits()
+    {
+        return $this->amountVisits;
     }
 }
