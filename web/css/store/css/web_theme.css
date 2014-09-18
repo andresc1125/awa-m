@@ -72,6 +72,13 @@ main .row
   font-size:18px;
 }
 
+.app-image
+{
+  float:left;
+  margin-right:10px;
+  width:200px;
+  height:200px;
+}
 
 /* main nav bar*/
 
