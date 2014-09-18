@@ -38,6 +38,14 @@ class AplicationImage
      */
     private $weight;
     
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="mainImage", type="boolean", nullable=true)
+     */
+    private $mainImage; 
+
+    
 	/**
 	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\AAplication", inversedBy="images")
 	* @ORM\JoinColumn(name="aplication_id", referencedColumnName="id")
@@ -210,5 +218,28 @@ class AplicationImage
     public function __tostring()
     {
       return $this->path;
+    }
+
+    /**
+     * Set mainImage
+     *
+     * @param boolean $mainImage
+     * @return AplicationImage
+     */
+    public function setMainImage($mainImage)
+    {
+        $this->mainImage = $mainImage;
+    
+        return $this;
+    }
+
+    /**
+     * Get mainImage
+     *
+     * @return boolean 
+     */
+    public function getMainImage()
+    {
+        return $this->mainImage;
     }
 }

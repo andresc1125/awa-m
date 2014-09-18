@@ -13,6 +13,7 @@ class AplicationImageType extends AbstractType
         $builder
             ->add('aaplication')
             ->add('image')
+            ->add('mainImage', null, array('required'=>false))
         ;
     }
 
