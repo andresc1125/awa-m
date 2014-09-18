@@ -17,6 +17,7 @@ class AAplicationDistributorType extends AbstractType
             ->add('currency')
             ->add('categories')
             ->add('platform')
+            ->add('description')
         ;
     }
 

@@ -44,6 +44,13 @@ class AAplication
     private $price;
     
     /**
+     * @var text
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="amountVisits", type="integer")
@@ -362,4 +369,51 @@ class AAplication
     {
         return $this->amountVisits;
     }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     * @return AAplication
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+    
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return AAplication
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    
 }

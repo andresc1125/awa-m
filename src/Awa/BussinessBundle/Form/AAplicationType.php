@@ -19,6 +19,7 @@ class AAplicationType extends AbstractType
             ->add('categories')
             ->add('platform')
             ->add('authorized')
+            ->add('description')
         ;
     }
 
