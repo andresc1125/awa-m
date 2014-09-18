@@ -33,6 +33,46 @@ main .row
 {
   margin-left:-1px;margin-right:-1px;}
 
+#appLayout
+{
+  display: inline-block;
+}
+
+#app-header
+{
+  background-color:#5687BC;
+  height:400px;
+}
+
+#details
+{
+  float:left;
+}
+
+#app-title
+{
+  float:left;
+  margin-right: 40px;
+}
+#app-image
+{
+  float:right;
+  margin-left:400px;
+}
+
+#distributor
+{
+  float:left;
+  clear:both;
+}
+
+#visits{
+  float:right;
+  clear:both;
+  font-size:18px;
+}
+
+
 /* main nav bar*/
 
 

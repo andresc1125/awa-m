@@ -1,33 +1,53 @@
 {% extends 'AwaBaseBundle::userBase.html.twig' %}
 
+{% block title %}
+  {{entity.name}}
+{% endblock %}
+
+{% block stylesheets %}
+  <link href="{{ asset('css/store/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('css/store/css/web_theme.css') }}">
+{% endblock %}
+
 {% block body -%}
-	<div id="appLayout">
-		<div id="title">
-			<h1>{{entity.name}}</h1>
-		</div>	
-		
-		<div id="image">
-			<img src="put here the image's url" alt="{{entity.name}}" height="300" width="300">
-		</div>
-		
-		<div id="details">
-			<div id="url">
-				<a href="{{entity.urlDescarga}}" target="blank">Descargar</a>
-			</div>
-			<div id="price">
-				{{entity.price}}
-			</div>
-			<div id="visits">
-				put here the visits amount
-			</div>
-			<div id="ditributor">
-				{{entity.distributor}}
-			</div>
-			<div id="category">
-				put here the category
-			</div>
-		</div>
-		
-	</div>
+  <div id="appLayout">
+    <section class="jumbotron" id="app-header">
+      <div id="app-title">
+        <h1>{{entity.name}}</h1>
+      </div>	
+      
+      <div id="app-image">
+          {% for image in entity.images%}
+            <img src="../../../../web/uploads/aplication_images/{{image.path}}" alt="{{image.path}}" height="300" width="300"></img>
+          {% endfor %}
+      </div>
+      
+      <div id="ditributor">
+        Distribuidor: {{entity.distributor}}
+      </div>
+      
+      <div id="visits">
+        Visitas: {{entity.amountVisits}}
+      </div>
+    </section>
+    <div id="details">
+      <div id="url">
+        <a href="{{entity.urlDescarga}}" target="blank">Descargar</a>
+      </div>
+      <div id="price">
+        {{entity.price}}
+      </div>
+      <div id="ditributor">
+        Distribuidor: {{entity.distributor}}
+      </div>
+      <div id="category">
+        categories: 
+        {% for category in entity.categories%}
+          {{category.name}}<br>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
         
-    {% endblock %}
+{% endblock %}
