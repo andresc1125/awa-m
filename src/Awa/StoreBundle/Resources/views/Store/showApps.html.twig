@@ -18,18 +18,19 @@
         <h1>{{entity.name}}</h1>
       </div>	
       
-      <div id="app-image">
-          {% for image in entity.images%}
-            {% if image.mainImage %}
-              <img src="../../../../web/uploads/aplication_images/{{image.path}}" alt="{{image.path}}"></img>
-            {% endif %}
-          {% endfor %}
-      </div>
+      {% for image in entity.images%}
+        {% if image.mainImage %}
+          <img id="app-main-image" src="../../../../web/uploads/aplication_images/{{image.path}}" alt="{{image.path}}"></img>
+        {% endif %}
+      {% endfor %}
       
       <div id="ditributor">
         Distribuidor: {{entity.distributor}}
       </div>
-      
+      <div id="price">
+        Precio: $ {{entity.price}}
+      </div>
+      <a id="download-url" href="{{entity.urlDescarga}}" target="blank">Descargar</a>
       <div id="visits">
         Visitas: {{entity.amountVisits}}
       </div>
@@ -42,9 +43,9 @@
       <div class="slides"></div>
       <!-- Controls for the borderless lightbox -->
       <h3 class="title"></h3>
-      <a class="prev">‹</a>
-      <a class="next">›</a>
-      <a class="close">×</a>
+      <a class="prev"> <---</a>
+      <a class="next">---></a>
+      <a class="close">X</a>
       <a class="play-pause"></a>
       <ol class="indicator"></ol>
       <!-- The modal dialog, which will be used to wrap the lightbox content -->
@@ -53,7 +54,7 @@
            <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"></h4>
+                <h4 class="modal-title">{{entity.name}}</h4>
             </div>
             <div class="modal-body next"></div>
               <div class="modal-footer">
@@ -73,22 +74,20 @@
     <div id="links">
       {% for image in entity.images%}
         {% if image.mainImage == false%}
-          <a href="../../../../web/uploads/aplication_images/{{image.path}}" title="entity.name" data-gallery>
-            <img class="app-image" src="../../../../web/uploads/aplication_images/{{image.path}}" alt="{{image.path}}" height="300" width="300"></img>
+          <a href="../../../../web/uploads/aplication_images/{{image.path}}" title="{{entity.name}}" data-gallery>
+            <img class="app-image" src="../../../../web/uploads/aplication_images/{{image.path}}" alt="{{entity.name}}" height="300" width="300"></img>
           </a>
         {% endif %}
       {% endfor %}
     </div>
     
     <div id="details">
-      <div id="url">
-        <a href="{{entity.urlDescarga}}" target="blank">Descargar</a>
-      </div>
-      <div id="price">
-        {{entity.price}}
-      </div>
+      <p id="description">
+        Descripción:
+        <br>{{entity.description}}
+      </p>
       <div id="category">
-        categories: 
+        <h4>Categorías:</h4>
         {% for category in entity.categories%}
           {{category.name}}<br>
         {% endfor %}

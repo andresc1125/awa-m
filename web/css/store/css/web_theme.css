@@ -41,7 +41,8 @@ main .row
 #app-header
 {
   background-color:#5687BC;
-  height:400px;
+  height:300px;
+  padding-top:20px;
 }
 
 #details
@@ -54,16 +55,33 @@ main .row
   float:left;
   margin-right: 40px;
 }
-#app-image
+#app-main-image
 {
   float:right;
   margin-left:400px;
+  width: 250px;
+  height: 250px;
 }
 
 #distributor
 {
   float:left;
   clear:both;
+}
+
+#price
+{
+  margin-top:-90px;
+  float:left;
+  clear:both;
+}
+
+#download-url
+{
+  margin-top: -20px;
+  float:left;
+  background-color:black;
+  height:20px;
 }
 
 #visits{
@@ -76,8 +94,26 @@ main .row
 {
   float:left;
   margin-right:10px;
-  width:200px;
-  height:200px;
+  width:70px;
+  height:70px;
+}
+
+#details
+{
+  clear:both;
+}
+
+#description
+{
+  float:left;
+  clear:both;
+  width:900px;
+}
+
+#categories
+{
+  float:left;
+  clear:both;
 }
 
 /* main nav bar*/
