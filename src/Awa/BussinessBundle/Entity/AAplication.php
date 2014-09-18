@@ -55,7 +55,7 @@ class AAplication
      *
      * @ORM\Column(name="amountVisits", type="integer")
      */
-    private $amountVisits;
+    private $amountVisits = 0;
 
     /**
      * @var boolean
