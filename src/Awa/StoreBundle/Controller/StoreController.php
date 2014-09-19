@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+use Awa\BussinessBundle\Entity\ReferedAplicationRepository;
+use Awa\BussinessBundle\Entity\BussinessCategory;
+
 /**
  * @Route("/store")
  * 
@@ -25,8 +28,13 @@ class StoreController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AwaBussinessBundle:AAplication')->findAll();
-
+//         $entities = $em->getRepository('AwaBussinessBundle:AAplication')->findAll();
+        $plan = $em->getRepository('AwaBussinessBundle:BussinessCategory')->findOneBy(array('name'=>"Gold"));
+        $refered = new ReferedAplicationRepository($em);
+  
+        
+         $entities = $refered->findAppsReferedBy($plan);
+//         $entities = $em->getRepository('AwaBussinessBundle:ReferedAplication')->findAppsReferedBy($plan);
         return array(
             'entities' => $entities,
         );

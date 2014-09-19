@@ -13,4 +13,19 @@ use Doctrine\ORM\EntityRepository;
 class ReferedAplicationRepository extends EntityRepository
 {
 
+
+  public function __construct($em)
+  {
+     $this->em = $em;
+  }
+  public function findAppsReferedBy($plan)
+  {
+    $query = $this->em->createQuery("SELECT app FROM AwaBussinessBundle:AAplication app 
+      LEFT JOIN AwaBussinessBundle:ReferedAplication ra WITH  ra.bussinessCategory = :plan
+      where app = ra.aplication");
+    $query->setParameter('plan', $plan);
+    
+    $apps = $query->getResult();        
+    return $apps;
+  }
 }
