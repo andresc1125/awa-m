@@ -46,7 +46,18 @@ security:
             logout:
                 path:   logout
                 target: /
-        
+            context: primary_auth 
+         
+        public_area:
+            pattern: ^/(user|role|store)/
+            context: primary_auth 
+            anonymous: ~
+            form_login:
+                check_path: login_check
+                login_path: _awa_login
+            logout:
+                path:   logout
+                target: /
         #secured_area:
         #    pattern: ^/demo/secured
         #    form_login:
@@ -65,4 +76,5 @@ security:
     access_control:
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
         - { path: ^/admin/, roles: ROLE_ADMIN }
+
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

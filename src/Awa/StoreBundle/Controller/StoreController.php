@@ -26,8 +26,8 @@ class StoreController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
-
 //         $entities = $em->getRepository('AwaBussinessBundle:AAplication')->findAll();
         $plan = $em->getRepository('AwaBussinessBundle:BussinessCategory')->findOneBy(array('name'=>"Gold"));
         $refered = new ReferedAplicationRepository($em);
@@ -37,6 +37,7 @@ class StoreController extends Controller
 //         $entities = $em->getRepository('AwaBussinessBundle:ReferedAplication')->findAppsReferedBy($plan);
         return array(
             'entities' => $entities,
+            'user' => $user,
         );
     }
     
