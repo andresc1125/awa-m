@@ -50,6 +50,7 @@ class StoreController extends Controller
      */
     public function showAppsAction($id)
     {
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AwaBussinessBundle:AAplication')->find($id);
@@ -58,6 +59,7 @@ class StoreController extends Controller
 
         return array(
             'entity' => $entity,
+            'user' =>$user,
         );
     }
 
@@ -70,7 +72,8 @@ class StoreController extends Controller
      */
     public function showUserAction()
     {
-        return $this->render('AwaStoreBundle:Store:showUser.html.twig');
+      $user = $this->get('security.context')->getToken()->getUser();
+      return $this->render('AwaStoreBundle:Store:showUser.html.twig',array('user'=>$user));
     }
 
 }

@@ -1,10 +1,40 @@
+<link href="{{ asset('css/store/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('css/bootstrap/css/js/bootstrap.min.js') }}"></script> 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('jquery/jquery-2.1.0.js') }}"></script> 
+
+  <div class="container">
  {% if error %}
  <div>{{ error.message }}</div>
  {% endif %}
- <form action="{{ path('login_check') }}" method="post">
- <label for="username">Username:</label>
- <input type="text" id="username" name="_username" value="{{ last_username }}" />
- <label for="password">Password:</label>
- <input type="password" id="password" name="_password" />
- <button type="submit">login</button>
+ <form action="{{ path('login_check') }}" class="" method="POST" >
+ <div class="formulario">
+          <form action="{{ path('login_check') }}" class="" method="POST" >
+            <h2 class="form-signin-heading"> Iniciar sesión </h2>
+           
+            <input class="input-xlarge" placeholder="Usuario " type="text" id="username" name="_username" value="{{ last_username }}" />
+            <br>
+            <input class="input-xlarge" placeholder="Password" type="password" id="password" name="_password" />
+
+                     
+            {% if error %}
+              <div class="alert alert-danger">
+                Usuario/contraseña incorrecta
+              </div>
+            {% endif %}
+            <label class="checkbox">
+               <input type="checkbox" id="remember_me" name="_remember_me" checked />Recordarme
+            </label>
+              <button class="btn btn-large btn-primary" type="submit">Iniciar sesión </button>
+              <div id="registro">
+                  <a href="">Registrarse </a>
+              </div>
+              <div id="olvido-contraseña">
+                  <a href="">¿Olvidó su password?</a>
+              </div>
+
+
+          </form>
+      </div>
  </form>
+ </div>

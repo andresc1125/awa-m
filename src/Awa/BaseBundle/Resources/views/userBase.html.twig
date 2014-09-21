@@ -38,10 +38,11 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     </head>
-    <body>
-		
+    <body>      
+    
+    
 		{% block carousel%}
-			<div class="clear"></div>
+		<div class="clear"></div>
 		    <div class="jumbotron" id="jumbo">
 		        <h1>
 		          Tristán
@@ -68,7 +69,7 @@
 		            </div>
 		        </div>
 		{% endblock %}
-
+  
 		{% block navbar%}
 			<nav id="main-navbar" class="grid_24 navbar navbar-default" role="navigation" >
 		        <div class="container-fluid">
@@ -79,8 +80,26 @@
 		                <li><a href="#">Sin fama</a></li>
 		                <li><a href="#">Random App</a></li>
 		              </ul>      
+		              
 		          </div>
+		          <ul class="nav navbar-nav navbar-right">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                              <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li role="presentation"><a href="{{ path('user_show') }}">Editar información</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('ask_distributor') }}">Convertirse en distribuidor</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('logout') }}">Salir</a></li>
+                                </ul>
+                              </li>
+                            {% else %}
+                              <ul  class="nav navbar-nav">
+                                <li><a href="{{path('login')}}">Login</a></li>
+                              </ul>
+                            {% endif %}
+                           </ul>
 		        </div>
+		        
 		      </nav> 
 		{% endblock %}
 
