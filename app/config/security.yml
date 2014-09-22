@@ -37,9 +37,10 @@ security:
         demo_login:
             pattern:  ^/demo/secured/login$
             security: false
+        
 
         secured_area_admin:
-            pattern:    ^/(admin|/demo/secured|user|role|store/user)/
+            pattern:    ^/(admin|/demo/secured|role|store/user)/
             form_login:
                 check_path: login_check
                 login_path: _awa_login
@@ -49,7 +50,7 @@ security:
             context: primary_auth 
          
         public_area:
-            pattern: ^/(store)/
+            pattern: ^/(user|store)/
             context: primary_auth 
             anonymous: ~
             
@@ -76,5 +77,6 @@ security:
     access_control:
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
         - { path: ^/admin/, roles: ROLE_ADMIN }
-
+        - { path: ^/user/new, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/user/.*, roles: ROLE_ADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

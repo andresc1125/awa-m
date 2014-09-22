@@ -17,7 +17,6 @@ class UserRegistrationType extends AbstractType
                 'invalid_message' => 'password invalid',
                 'options' => array('label' => 'password')))
             ->add('email','email')
-            ->add('isActive')
         ;
     }
 

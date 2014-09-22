@@ -75,11 +75,12 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $this->setSecurePassword($entity);
+            $entity->setIsActive(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('succesfull_alert', array('text' => "Registro satisfactorio")));
         }
 
         return array(

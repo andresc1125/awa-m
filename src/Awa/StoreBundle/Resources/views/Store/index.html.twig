@@ -2,11 +2,6 @@
 
 {% block body -%}
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <h1>Inició sesión como: {{user.username}}</h1>
-    {% else %}
-      No ha iniciado sesión
-    {% endif %}
     <h1>Our recent applications</h1>
 		
 		{% for entity in entities %}
