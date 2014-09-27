@@ -250,88 +250,6 @@ class UserController extends Controller
         ;
     }
 
-    /**
-     * Creates a new Distributor entity.
-     *
-     * @Route("/destributor/new", name="distributor_user_create")
-     * @Method("POST")
-     * @Template("")
-     */
-    public function createDistributorAction(Request $request)
-    {
-        $user = $this->get('security.context')->getToken()->getUser();
-        $entity  = new Distributor();
-        $form = $this->createForm(new DistributorUserType(), $entity);
-        $form->bind($request);
-
-        if($user->getDistributor() != null){
-            $text = "Usted ya tiene un distribuidor registrado";
-            return $this->redirect($this->generateUrl('error_alert', array('text' => $text)));
-        }
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $user->setDistributor($entity);
-            $entity->setAuthorized(false);
-            $em->flush();
-            $text = "Su solicitud se ha realizado satisfactoriamente";
-            return $this->redirect($this->generateUrl('succesfull_alert', array('text' => $text)));
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to edit an existing User entity.
-     *
-     * @Route("/distributor", name="ask_distributor")
-     * @Method("GET")
-     * @Template()
-     */
-    public function askDistributorAction(){
-        $entity = new Distributor();
-        $form   = $this->createForm(new DistributorUserType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to edit an existing User entity.
-     *
-     * @Route("/succesfull/{text}", name="succesfull_alert")
-     * @Method("GET")
-     * @Template()
-     */
-    public function alertSuccesfullAction($text){
-        
-
-        return array(
-            'text' => $text,
-        );
-    }
-
-    /**
-     * Displays a form to edit an existing User entity.
-     *
-     * @Route("/error/{text}", name="error_alert")
-     * @Method("GET")
-     * @Template()
-     */
-    public function alertErrorAction($text){
-        
-
-        return array(
-            'text' => $text,
-        );
-    }
-
     private function setSecurePassword(&$entity) {
         $entity->setSalt(md5(time()));
         $encoder = new \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder('sha1', false, 1);
@@ -339,5 +257,3 @@ class UserController extends Controller
         $entity->setPassword($password);
     }
 }
-
-//$user = $this->get('security.context')->getToken()->getUser();
