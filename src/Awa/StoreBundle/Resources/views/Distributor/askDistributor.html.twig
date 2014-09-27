@@ -1,0 +1,15 @@
+{% extends 'AwaBaseBundle::distributorBase.html.twig' %}
+
+{% block body -%}
+    <h1>Do you want to be a distributor?</h1>
+    
+    <form action="{{ path('distributor_user_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create my distributor!!</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+</ul>
+{% endblock %}
