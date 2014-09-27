@@ -1,20 +1,14 @@
-<link href="{{ asset('css/store/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-<script src="{{ asset('css/bootstrap/css/js/bootstrap.min.js') }}"></script> 
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="{{ asset('jquery/jquery-2.1.0.js') }}"></script> 
+
 
   <div class="container">
- {% if error %}
- <div>{{ error.message }}</div>
- {% endif %}
  <form action="{{ path('login_check') }}" class="" method="POST" >
  <div class="formulario">
           <form action="{{ path('login_check') }}" class="" method="POST" >
             <h2 class="form-signin-heading"> Iniciar sesión </h2>
            
-            <input class="input-xlarge" placeholder="Usuario " type="text" id="username" name="_username" value="{{ last_username }}" />
+            <input class="input-group input-group-lg" placeholder="Usuario " type="text" id="username" name="_username" value="{{ last_username }}" />
             <br>
-            <input class="input-xlarge" placeholder="Password" type="password" id="password" name="_password" />
+            <input class="input-group input-group-lg" placeholder="Password" type="password" id="password" name="_password" />
 
                      
             {% if error %}
