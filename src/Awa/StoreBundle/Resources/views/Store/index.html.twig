@@ -4,10 +4,8 @@
 
     <h1>Our recent applications</h1>
 		
-		{% for entity in entities %}
-           
-                <a href="{{ path('store_show_app', { 'id': entity.id }) }}">{{ entity.name }}</a>
-                {{ entity.price }}
+        {% for entity in entities %}
+          <a href="{{ path('store_show_app', { 'id': entity.id }) }}">{{ entity.name }}</a>
+          {{ entity.price }}
         {% endfor %}
-        
     {% endblock %}

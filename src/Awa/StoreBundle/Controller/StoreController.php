@@ -31,16 +31,14 @@ class StoreController extends Controller
     {
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
-        $plan_gold = $em->getRepository('AwaBussinessBundle:BussinessCategory')->findOneBy(array('name'=>"Gold"));
-        $refered = new ReferedAplicationRepository($em);
-        
-        $entities = $refered->findAppsReferedBy($plan_gold);
+        $gold_category = $em->getRepository('AwaBussinessBundle:BussinessCategory')->findOneByName("Trending");
+        $plan_gold = $em->getRepository('AwaBussinessBundle:ReferedAplication')->findAppsReferedBy($gold_category);
         return array(
-            'entities' => $entities,
+            'entities' => $plan_gold,
             'user' => $user,
         );
     }
-    
+
     /**
      * Lists all AAplication entities.
      *
