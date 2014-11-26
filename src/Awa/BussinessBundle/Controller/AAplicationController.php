@@ -187,7 +187,7 @@ class AAplicationController extends Controller
      * Displays a form to create a new AAplication entity.
      *
      * @Route("/add", name="aplication_distributor_new")
-     * @Method("GET")
+     * @Method("POST")
      * @Template()
      */
     public function addAction()
@@ -223,26 +223,6 @@ class AAplicationController extends Controller
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Finds and displays a AAplication entity.
-     *
-     * @Route("/show", name="show_distributor_apps")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showDistributorAppsAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $this->get('security.context')->getToken()->getUser();
-        $distributor = $em->getRepository('AwaBussinessBundle:Distributor')->findOneBy(array('user' => $user));
-        $apps = $distributor->getAplications();
-
-        return array(
-            'entities'      => $apps,
         );
     }
 

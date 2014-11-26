@@ -10,6 +10,10 @@ use Awa\BussinessBundle\Entity\Category;
 use Awa\BussinessBundle\Entity\Currency;
 use Awa\BussinessBundle\Entity\Platform;
 use Awa\BussinessBundle\Entity\Distributor;
+use Awa\BussinessBundle\Entity\BussinessCategory;
+use Awa\BussinessBundle\Entity\ReferedAplication;
+use Awa\BussinessBundle\Entity\AplicationImage;
+
 
 
 class LoadBaseConfigurationData implements FixtureInterface
@@ -123,6 +127,9 @@ class LoadBaseConfigurationData implements FixtureInterface
       $distributor->setAuthorized(true);
       $manager->persist($distributor);
       $manager->flush();
+      
+      
+     //Bussiness Categories
       
     }
 }

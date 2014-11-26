@@ -14,7 +14,7 @@ class ReferedAplicationRepository extends EntityRepository
 {
   public function findAppsReferedBy($plan)
   {
-    $query = $this->em->createQuery("SELECT app FROM AwaBussinessBundle:AAplication app 
+    $query = $this->getEntityManager()->createQuery("SELECT app FROM AwaBussinessBundle:AAplication app 
       LEFT JOIN AwaBussinessBundle:ReferedAplication ra WITH  ra.bussinessCategory = :plan
       where app = ra.aplication");
     $query->setParameter('plan', $plan);

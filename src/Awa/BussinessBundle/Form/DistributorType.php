@@ -12,6 +12,7 @@ class DistributorType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('authorized')
         ;
     }
 

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Awa\BussinessBundle\Entity\Distributor;
 use Awa\BussinessBundle\Form\DistributorUserType;
+use Awa\BussinessBundle\Entity\AAplication;
+use Awa\BussinessBundle\Form\AAplicationDistributorType;
 
 
 /**
@@ -23,7 +25,7 @@ class DistributorController extends Controller
      * @Route("/myapps", name="myapps")
      * @Template()
      */
-    public function myAppsAction($name)
+    public function myAppsAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -35,7 +37,7 @@ class DistributorController extends Controller
             'entities'      => $apps,
         );
     }
-    
+
     /**
      * Shows the user's dristributor
      *
@@ -55,7 +57,7 @@ class DistributorController extends Controller
           return $this->redirect($this->generateUrl('ask_for_distributor'));
         }
     }
-    
+
       /**
      * Lists all AAplication entities.
      *
@@ -83,10 +85,10 @@ class DistributorController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('distributor_user'));
         }
-        
+
         return $this->redirect($this->generateUrl('ask_distributor'));
     }
-    
+
         /**
      * Displays a form to edit an existing User entity.
      *
@@ -97,10 +99,81 @@ class DistributorController extends Controller
     public function askDistributorAction(){
         $entity = new Distributor();
         $form   = $this->createForm(new DistributorUserType(), $entity);
-        
+
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * Displays a form to create a new AAplication entity.
+     *
+     * @Route("/new_app", name="distributor_aplication_new")
+     * @Method("GET")
+     * @Template()
+     */
+    public function newAppAction()
+    {
+        $entity = new AAplication();
+        $form   = $this->createForm(new AAplicationDistributorType(), $entity);
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * Creates a new AAplication entity.
+     *
+     * @Route("/", name="distributor_aplication_create")
+     * @Method("POST")
+     * @Template("AwaBussinessBundle:AAplication:new.html.twig")
+     */
+    public function createAction(Request $request)
+    {
+        $entity  = new AAplication();
+        $form = $this->createForm(new AAplicationDistributorType(), $entity);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $entity->setAuthorized(0);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('distributor_aplication_show', array('id' => $entity->getId())));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+    
+    /**
+     * Finds and displays a AAplication entity.
+     *
+     * @Route("/showApp/{id}", name="distributor_aplication_show")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAppAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AwaBussinessBundle:AAplication')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Aplication entity.');
+        }
+
+//         $deleteForm = $this->createDeleteForm($id);
+
+        return array(
+            'entity'      => $entity,
+//             'delete_form' => $deleteForm->createView(), 
         );
     }
 }

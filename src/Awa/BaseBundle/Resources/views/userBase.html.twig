@@ -88,7 +88,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                   <li role="presentation"><a href="{{ path('user_show') }}">Editar información</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('ask_distributor') }}">Convertirse en distribuidor</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('distributor_user') }}">Convertirse en distribuidor</a></li>
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('logout') }}">Salir</a></li>
                                 </ul>
                               </li>
@@ -119,20 +119,6 @@
 
 		
 		{% block leftbar %}
-		<!--
-			<div class="left-bar" id="base-left-bar">
-				<br>Contenido</br>
-				{% block  leftContent%}
-					<div class="content" id="left-contet">
-						<ul>
-							<li><a href="{{ path('distributor') }}">Disributors</a></li>
-							<li><a href="{{ path('category') }}">Categories</a></li>
-							<li><a href="{{ path('store') }}">Apps</a></li>
-						</ul>						
-					</div>
-				{% endblock %}
-			</div>
-			-->
 			<aside class="bar left-bar grid_5 col-md-5" >
 				<nav class="nav nav-pills nav-stacked">
                                           <div class="panel-group" id="accordion">
