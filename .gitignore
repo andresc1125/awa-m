@@ -8,3 +8,4 @@
 /bin/
 /composer.phar
 /source/*.php~
+/src/*.php~
