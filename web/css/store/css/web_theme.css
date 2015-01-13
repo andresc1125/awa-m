@@ -26,10 +26,8 @@ header
 
 aside.left-bar, main,article
 {
-/*	outline:solid 1px green;*/
+/*      outline:solid 1px green;*/
 }
-
-#
 
 main .row
 {
@@ -60,7 +58,7 @@ main .row
 #app-main-image
 {
   float:right;
-  margin-left:400px;
+  margin-left:100px;
   width: 250px;
   height: 250px;
 }
@@ -122,10 +120,6 @@ main .row
 
 
 /* 
-
 aside left bar 
-
 for css example take a look here http://getbootstrap.com/examples/dashboard/
 */
-
-
