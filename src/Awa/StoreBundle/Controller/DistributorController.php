@@ -37,6 +37,22 @@ class DistributorController extends Controller
             'entities'      => $apps,
         );
     }
+    
+    /**
+     * @Route("/dist_apps/{id}", name="distributor_apps")
+     * @Template()
+     */
+    public function showDistributorAppsAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $distributor = $em->getRepository('AwaBussinessBundle:Distributor')->find($id);
+        $apps = $distributor->getAplications();
+
+        return array(
+            'entities'      => $apps,
+        );
+    }
 
     /**
      * Shows the user's dristributor
@@ -169,11 +185,8 @@ class DistributorController extends Controller
             throw $this->createNotFoundException('Unable to find Aplication entity.');
         }
 
-//         $deleteForm = $this->createDeleteForm($id);
-
         return array(
             'entity'      => $entity,
-//             'delete_form' => $deleteForm->createView(), 
         );
     }
 }
