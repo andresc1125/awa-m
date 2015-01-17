@@ -133,7 +133,6 @@ class DistributorController extends Controller
     {
         $entity = new AAplication();
         $form   = $this->createForm(new AAplicationDistributorType(), $entity);
-
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -149,6 +148,7 @@ class DistributorController extends Controller
      */
     public function createAction(Request $request)
     {
+        $user = $this->get('security.context')->getToken()->getUser();
         $entity  = new AAplication();
         $form = $this->createForm(new AAplicationDistributorType(), $entity);
         $form->bind($request);
@@ -157,6 +157,7 @@ class DistributorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $entity->setAuthorized(0);
+            $entity->setDistributor($user->getDistributor());
             $em->flush();
 
             return $this->redirect($this->generateUrl('distributor_aplication_show', array('id' => $entity->getId())));
