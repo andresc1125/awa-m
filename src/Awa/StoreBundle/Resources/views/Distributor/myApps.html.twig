@@ -2,6 +2,24 @@
 
 {% block body -%}
   <br>
-  
+  <table class="records_list  table table-striped">
+     <thead>
+            <tr>
+                <th>Name</th>
+                <th>Urldescarga</th>
+                <th>Price</th>
+            </tr>
+    </thead>
+    <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('distributor_aplication_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td><a href="{{ entity.urlDescarga }}"">{{entity.urlDescarga}}</a></td>
+                <td>{{ entity.price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+  </table>
+  <br>
   <a href="{{path('distributor_aplication_new')}}"> Create a new app </a>
 {% endblock %}

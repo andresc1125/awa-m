@@ -88,7 +88,11 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                   <li role="presentation"><a href="{{ path('user_show') }}">Editar información</a></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('distributor_user') }}">Convertirse en distribuidor</a></li>
+                                  {% if user.distributor == null %}
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('distributor_user') }}">Convertirse en distribuidor</a></li>
+                                  {% else %} 
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('myapps') }}">Mis apps</a></li>
+                                  {% endif %}
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('logout') }}">Salir</a></li>
                                 </ul>
                               </li>
