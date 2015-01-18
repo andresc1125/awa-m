@@ -47,7 +47,7 @@ class AplicationImage
 
     
 	/**
-	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\AAplication", inversedBy="images")
+	* @ORM\ManyToOne(targetEntity="Awa\BussinessBundle\Entity\AAplication", inversedBy="images", cascade={"persist"})
 	* @ORM\JoinColumn(name="aplication_id", referencedColumnName="id")
 	*/
     protected $aaplication;
