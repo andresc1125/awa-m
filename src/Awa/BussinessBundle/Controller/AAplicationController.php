@@ -70,7 +70,7 @@ class AAplicationController extends Controller
     public function baseFilterAction()
     {
         $form = $this->get('form.factory')->create(new AwaAplicationFilterType());
-        
+
         if (($this->get('request')->query->has('submit-filter')) || $this->get('request')->isXmlHttpRequest()) {
             // bind values from the request
             $form->bind($this->get('request'));
@@ -85,7 +85,7 @@ class AAplicationController extends Controller
 
             $resultQuery = $filterBuilder->getQuery();
             $fiteredEntities = $resultQuery->getArrayResult();
-            
+
             if($this->get('request')->isXmlHttpRequest())
             {
               $response = new JsonResponse();
@@ -94,12 +94,12 @@ class AAplicationController extends Controller
               ));
               return $response;
             }
-            
+
             return $this->render('AwaBussinessBundle:AAplication:showFilterResults.html.twig', array(
               'entities' => $fiteredEntities,
               ));
         }
-        
+
         return $this->render('AwaBussinessBundle:AAplication:baseFilter.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -123,6 +123,12 @@ class AAplicationController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+            foreach($form->getData()->getImages() as $image)
+            {
+              $image->upload();
+              $image->setAaplication($entity);
+              $em->persist($image);
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('aplication_show', array('id' => $entity->getId())));
@@ -175,7 +181,10 @@ class AAplicationController extends Controller
     public function newAction()
     {
         $entity = new AAplication();
-        $form   = $this->createForm(new AAplicationDistributorType(), $entity);
+         $em = $this->getDoctrine()->getManager();
+        $images = $em->getRepository('AwaBussinessBundle:AplicationImage')->findAll();
+        $entity->getImages($images);
+        $form   = $this->createForm(new AAplicationType(), $entity);
 
         return array(
             'entity' => $entity,

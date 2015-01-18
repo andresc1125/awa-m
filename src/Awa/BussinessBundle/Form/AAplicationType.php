@@ -20,6 +20,7 @@ class AAplicationType extends AbstractType
             ->add('platform')
             ->add('authorized')
             ->add('description')
+            ->add('images', 'collection', array('type' => new AplicationImageType, 'allow_add' => true))
         ;
     }
 
